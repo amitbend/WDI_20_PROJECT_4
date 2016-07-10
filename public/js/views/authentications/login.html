@@ -1,0 +1,35 @@
+<md-content flex id="content">
+<section layout="column" flex="60" flex-offset="20">
+  <h2 class="md-display-3">Login</h2>
+  <md-divider></md-divider>
+  <form id="login" name="users.loginForm" ng-submit="users.login()" class="md-whiteframe-15dp" novalidate>
+    <div class="alert alert-danger" role="alert" ng-show="(!!users.error && users.loginForm.$submitted)">{{ users.error }}</div>
+
+      <md-input-container class="md-icon-float md-block">  
+      <input type="email" class="form-control" id="email" placeholder="Email" name="email" ng-model="users.user.email" required>
+      </md-input-container>
+
+    <div class="alert alert-danger" role="alert" ng-messages="users.loginForm['email'].$error" ng-show="(users.loginForm.$submitted && users.loginForm['email'].$invalid)">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      <span ng-message="required">Email is required.</span>
+    </div>
+    
+      <md-input-container class="md-icon-float md-block">  
+      <input type="text" class="form-control" id="password" name="password"  placeholder="Password" ng-model="users.user.password" required>
+      </md-input-container>
+
+    <div class="alert alert-danger" role="alert" ng-messages="users.loginForm['password'].$error" ng-show="(users.loginForm.$submitted && users.loginForm['password'].$invalid)">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      <span ng-message="required">Password is required.</span>
+    </div>
+
+    <md-button type="submit" class="md-raised">Submit
+    </md-button>
+  </form>
+</section>
+</md-content>
+
+
+

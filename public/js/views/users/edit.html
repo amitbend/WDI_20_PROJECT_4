@@ -1,0 +1,7 @@
+<form id="edit-user" ng-show="users.toggle.isShown(2)" ng-submit="users.updateUser()">
+  <input type="text" ng-model="users.editedUser.name">
+  <input type="text" ng-model="users.editedUser.github">
+  <input type="text" ng-model="users.editedUser.bio">
+  <input type="text" ng-model="users.editedUser.portfolio">
+  <input type="submit" value='Save' id="submit" ng-click="users.toggle.section(5)">
+</form>

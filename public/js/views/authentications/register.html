@@ -1,0 +1,59 @@
+
+<md-content flex id="content">
+
+  <section layout="column" flex="60" flex-offset="20">
+  <h2 class="md-display-3">Register</h2>
+  <md-divider></md-divider>
+
+    <form id="register" name="users.registerForm" ng-submit="users.register()" class="md-whiteframe-15dp" novalidate>
+      <div class="alert alert-danger" role="alert" ng-show="(!!users.error && users.registerForm.$submitted)">{{ users.error }}</div>
+
+      <md-input-container class="md-icon-float md-block">   
+        <input type="text" placeholder="Username" ng-model="users.user.username">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">       
+        <input type="text" placeholder="Name" ng-model="users.user.name">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block">       
+        <input type="text" placeholder="Image" ng-model="users.user.image">
+      </md-input-container>
+
+      <md-input-container class="md-icon-float md-block"> 
+        <input type="email" placeholder="Email" ng-model="users.user.email">
+      </md-input-container>
+
+      <div class="alert alert-danger" role="alert" ng-messages="users.registerForm['email'].$error" ng-show="(users.registerForm.$submitted && users.registerForm['email'].$invalid)">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <span ng-message="required">Email is required.</span>
+      </div>
+
+      <md-input-container class="md-icon-float md-block">
+        
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="users.user.password" required>
+      </md-input-container>
+
+      <div class="alert alert-danger" role="alert" ng-messages="users.registerForm['password'].$error" ng-show="(users.registerForm.$submitted && users.registerForm['password'].$invalid)">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <span ng-message="required">Password is required.</span>
+      </div>
+
+      <md-input-container class="md-icon-float md-block">
+        <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" placeholder="Password Confirmation" ng-model="users.user.passwordConfirmation" required>
+      </md-input-container>
+
+      <div class="alert alert-danger" role="alert" ng-messages="users.registerForm['passwordConfirmation'].$error" ng-show="(users.registerForm.$submitted && users.registerForm['passwordConfirmation'].$invalid)">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <span ng-message="required">Password Confirmation is required.</span>
+      </div>
+
+      <md-button type="submit" class="md-raised">Submit</md-button>
+    </form>
+
+  </section>
+
+</md-content>

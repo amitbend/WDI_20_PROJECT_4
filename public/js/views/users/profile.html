@@ -1,0 +1,44 @@
+
+<section layout="column" flex="60" flex-offset="20">
+<h2 class="md-display-3">User Show</h2>
+<md-divider></md-divider>
+  <div id="users">
+    <ul class="md-whiteframe-15dp">
+      <li class='user-tile'>
+        <h2>{{users.currentUser.local.name}}</h2> 
+        <p>{{users.currentUser.local.username}}</p>
+        <p>{{users.currentUser.local.email}}</p>
+        <a href='#' ng-click="users.deleteUser(user)">Delete</a> 
+        <a href='#' ng-click="users.toggle.section(2); users.editUser(user)" >Edit</a>
+
+      </li>
+    </ul>
+  </div>
+
+  <div id="users" flex-offset="20" flex="60" ng-controller='songsController as songs' class="md-whiteframe-15dp display">
+  <h2 class="md-display-3">My songs</h2>
+  <input type="text" ng-model="searchBox">
+
+
+    <md-content flex>
+        <md-list>
+          <md-list-item class="md-3-line" ng-repeat="song in users.currenUser.songs | filter: searchBox" >
+            <img ng-src="" alt="test" class="md-avatar">
+            <div class="md-list-item-text">
+              <h3>{{song.title}}</h3>
+              <h4>{{song.location}}</h4>
+              <p>
+               test
+              </p>
+              
+            </div>
+            <md-divider inset></md-divider>
+          </md-list-item>
+        </md-list>
+      </md-content>
+  </div>
+
+
+
+
+</section>
