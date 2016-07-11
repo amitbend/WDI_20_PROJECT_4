@@ -112,3 +112,8 @@ form .progress {
     width: 0;
 }
 
+md-icon {
+  width: 180px;
+  height: 180px;
+}
+

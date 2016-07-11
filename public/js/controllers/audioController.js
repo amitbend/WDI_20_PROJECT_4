@@ -4,7 +4,8 @@ angular
   .config(function($mdIconProvider) {
       $mdIconProvider
         .iconSet("call", 'img/icons/sets/communication-icons.svg', 24)
-        .iconSet("social", 'img/icons/sets/social-icons.svg', 24);
+        .iconSet("social", 'img/icons/sets/social-icons.svg', 24)
+        .iconSet("av", 'img/icons/sets/av-icons.svg', 36);
     })
  .directive('fileModel', ['$parse', function ($parse) {
       return {
@@ -50,6 +51,7 @@ function audioController($state, $location, $mdDialog, $scope, Upload, $timeout,
   self.confirmed  = "poo";
   self.change     = change;
   self.changethis = 4;
+  self.playicon   = "av:play_arrow";
 
  
 
@@ -85,12 +87,14 @@ function audioController($state, $location, $mdDialog, $scope, Upload, $timeout,
     for (var i = stems.length - 1; i >= 0; i--) {
       stems[i].play()
     }
+    self.playicon = "av:pause";
   }
 
   function stopSound() {
     for (var i = stems.length - 1; i >= 0; i--) {
       stems[i].load()
     }
+    self.playicon = "av:play_arrow"
   }
 
   function select(section, selector) {

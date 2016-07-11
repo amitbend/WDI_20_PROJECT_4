@@ -1,17 +1,15 @@
 
 <section layout="column" flex="60" flex-offset="20" ng-controller='audioController as audio'>
-<h2 class="md-display-3">Play</h2>
+  <h2 class="md-display-3">Play</h2>
 
-<button data-ng-click="audio.playSound()">Play</button>
-<button data-ng-click="audio.stopSound()">Stop</button>
+  <h3>{{}}</h3>
 
-<div id="pdf-container"></div>
+  <span>
+    <a href="#" data-ng-click="audio.playSound()"><md-icon md-svg-icon="{{audio.playicon}}"></md-icon></a>
+    <a href="#" data-ng-click="audio.stopSound()"><md-icon md-svg-icon="av:stop"></a>
+  </span>
 
-<label>Voices</label>
-<input type="text" ">
-<div class="mixer">
-
-
+  <div class="mixer">
 
    <rzslider class="fader" rz-slider-model="audio.verticalSlider1.value" rz-slider-options="audio.verticalSlider1.options" ng-click="audio.change()"></rzslider>
    <rzslider class="fader" rz-slider-model="audio.verticalSlider2.value" rz-slider-options="audio.verticalSlider1.options" ng-click="audio.change()"></rzslider>
@@ -21,42 +19,42 @@
 
 
 
-<label>Soprano </label>
-<audio id="clip1" class="stem soprano" src="sounds/synth.wav"  preload="none" volume=0 controls autobuffer></audio> 
-<audio id="clip2" class="stem soprano" src="sounds/operavoc.wav" muted="true" preload="none" controls autobuffer></audio> 
-<label>Alto </label>
-<audio id="clip3" class="stem alto" src="sounds/leadvoc.wav"  preload="none" controls autobuffer></audio> 
-<audio id="clip4" class="stem alto" src="sounds/leadvoc(clean).wav" muted="true"  preload="none"controls autobuffer></audio> 
-<label>Bass </label>
-<audio id="clip5" class="stem bass" src="sounds/Drums.wav"  preload="none" controls autobuffer></audio> 
-<audio id="clip6" class="stem bass" src="sounds/Speech.wav" muted="true"  preload="none"controls autobuffer></audio> 
+ <audio id="clip1" class="stem soprano" src="sounds/synth.wav"  preload="none" volume=0  autobuffer></audio> 
+ <audio id="clip2" class="stem soprano" src="sounds/operavoc.wav" muted="true" preload="none"  autobuffer></audio> 
 
-<div class=selector>
-<span>
-<md-button class="md-primary dropdown" ng-Mouseenter="soprano=!soprano" ng-Mouseleave="soprano=!soprano" ng-class="{active:soprano}">
-  Soprano
-  <ul class="dropdown-menu md-whiteframe-z1">
-    <li><md-button ng-click="audio.select('soprano', 'clip1')">One</md-button></li>
-    <li><md-button ng-click="audio.select('soprano', 'clip2')">Two</md-button></li>
-  </ul>
-</md-button>
+ <audio id="clip3" class="stem alto" src="sounds/leadvoc.wav"  preload="none"  autobuffer></audio> 
+ <audio id="clip4" class="stem alto" src="sounds/leadvoc(clean).wav" muted="true"  preload="none" autobuffer></audio> 
 
-<md-button class="md-primary dropdown" ng-Mouseenter="alto=!alto" ng-Mouseleave="alto=!alto" ng-class="{active:alto}">
-  Alto
-  <ul class="dropdown-menu md-whiteframe-z1">
-    <li><md-button ng-click="audio.select('alto', 'clip3')">One</md-button></li>
-    <li><md-button ng-click="audio.select('alto', 'clip4')">Two</md-button></li>
-  </ul>
-</md-button>
+ <audio id="clip5" class="stem bass" src="sounds/Drums.wav"  preload="none"  autobuffer></audio> 
+ <audio id="clip6" class="stem bass" src="sounds/Speech.wav" muted="true"  preload="none" autobuffer></audio> 
+
+ <div class=selector>
+  <span>
+    <md-button class="md-primary dropdown" ng-Mouseenter="soprano=!soprano" ng-Mouseleave="soprano=!soprano" ng-class="{active:soprano}">
+      Soprano
+      <ul class="dropdown-menu md-whiteframe-z1">
+        <li><md-button ng-click="audio.select('soprano', 'clip1')">One</md-button></li>
+        <li><md-button ng-click="audio.select('soprano', 'clip2')">Two</md-button></li>
+      </ul>
+    </md-button>
+
+    <md-button class="md-primary dropdown" ng-Mouseenter="alto=!alto" ng-Mouseleave="alto=!alto" ng-class="{active:alto}">
+      Alto
+      <ul class="dropdown-menu md-whiteframe-z1">
+        <li><md-button ng-click="audio.select('alto', 'clip3')">One</md-button></li>
+        <li><md-button ng-click="audio.select('alto', 'clip4')">Two</md-button></li>
+      </ul>
+    </md-button>
 
 
-<md-button class="md-primary dropdown" ng-Mouseenter="bass=!bass" ng-Mouseleave="bass=!bass" ng-class="{active:bass}">
-  Bass
-  <ul class="dropdown-menu md-whiteframe-z1">
-    <li><md-button ng-click="audio.select('bass', 'clip5')">One</md-button></li>
-    <li><md-button ng-click="audio.select('bass', 'clip6')">Two</md-button></li>
-  </ul>
-</md-button>
-</span>
+    <md-button class="md-primary dropdown" ng-Mouseenter="bass=!bass" ng-Mouseleave="bass=!bass" ng-class="{active:bass}">
+      Bass
+      <ul class="dropdown-menu md-whiteframe-z1">
+        <li><md-button ng-click="audio.select('bass', 'clip5')">One</md-button></li>
+        <li><md-button ng-click="audio.select('bass', 'clip6')">Two</md-button></li>
+      </ul>
+    </md-button>
+  </span>
 </div>
+<div id="pdf-container"></div>
 </section>

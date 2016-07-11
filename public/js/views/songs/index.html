@@ -8,12 +8,11 @@
         <md-list-item class="md-3-line" ng-repeat="song in songs.all | filter: searchBox" >
           <img ng-src="" alt="test" class="md-avatar">
           <div class="md-list-item-text">
-            <h3>{{song.title}}</h3>
+            <a href="#" ng-click='songs.selectSong(song)'"><h3>{{song.title}}</h3></a>
             <h4>{{song.location}}</h4>
             <p>
              test
             </p>
-            <a href="#" uiref="play">Play</a>
             
           </div>
           <md-divider inset></md-divider>
