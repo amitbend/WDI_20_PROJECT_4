@@ -19,8 +19,7 @@ function songsController(Song, $state, $location, CurrentUser){
   self.newSong = null;
   self.all = null;
   this.getSongs = getSongs;
-  self.testarray = ["bob", "pete", "steve"]
-
+  
 getSongs();
 
 function getSongs(){

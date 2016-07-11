@@ -1,5 +1,5 @@
 angular
-  .module('choir', ['angular-jwt', 'ngResource', 'ui.router', 'ngMaterial', 'rzModule'])
+  .module('choir', ['angular-jwt', 'ngResource', 'ui.router', 'ngMaterial', 'rzModule', 'ngFileUpload'])
   .constant('API', 'http://localhost:3000')
   .config(MainRouter)
   .config(function($httpProvider) {
@@ -46,6 +46,10 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     .state('play', {
       url: "/play",
       templateUrl: "js/views/songs/play.html"
+    })
+    .state('upload', {
+      url: "/upload",
+      templateUrl: "js/views/audio/upload.html"
     })
   
   $urlRouterProvider.otherwise("/");

@@ -7,19 +7,20 @@ angular
         .iconSet("social", 'img/icons/sets/social-icons.svg', 24);
     })
  
-audioController.$inject = ['$state', '$location', '$mdDialog', '$scope'];
+audioController.$inject = ['$state', '$location', '$mdDialog', '$scope', 'Upload', '$timeout'];
 
-function audioController($state, $location, $mdDialog, $scope){
+function audioController($state, $location, $mdDialog, $scope, Upload, $timeout){
  
-  var self       = this;
-  self.playSound = playSound;
-  self.stopSound = stopSound;
-  self.name      = 'John';
-  self.select    = select; 
-  var stems      = document.getElementsByClassName("stem");
-  self.confirmed = "poo";
-  self.change = change;
+  var self        = this;
+  self.playSound  = playSound;
+  self.stopSound  = stopSound;
+  self.name       = 'John';
+  self.select     = select; 
+  var stems       = document.getElementsByClassName("stem");
+  self.confirmed  = "poo";
+  self.change     = change;
   self.changethis = 4;
+
  
 
   
@@ -72,15 +73,32 @@ function audioController($state, $location, $mdDialog, $scope){
   };
 
   function change() {
-    // document.getElementById("clip1").volume = self.changethis/10
     document.getElementById("clip1").volume = this.verticalSlider1.value * 0.1
     document.getElementById("clip2").volume = this.verticalSlider2.value * 0.1
     document.getElementById("clip3").volume = this.verticalSlider3.value * 0.1
-    document.getElementById("clip4").volume = this.verticalSlider4.value * 0.1
-    
+    document.getElementById("clip4").volume = this.verticalSlider4.value * 0.1 
   }
 
 
+  this.upload = function(file) {
+    console.log(Upload);
+    console.log(file);
+      file.upload = Upload.upload({
+        url: 'img',
+        data: {file: file},
+      });
+
+      file.upload.then(function (response) {
+        $timeout(function () {
+          file.result = response.data;
+        });
+      }, function (response) {
+        if (response.status > 0)
+          this.errorMsg = response.status + ': ' + response.data;
+      }, function (evt) {
+        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+      });
+      }
 
 
 }

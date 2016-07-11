@@ -9,6 +9,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-resource.min.js"></script>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.9/angular-material.min.js"></script>
+  <script src="ng-file-upload/ng-file-upload.min.js"></script>
+  <script src="ng-file-upload/ng-file-upload-shim.min.js"></script>
 
   <script src="pdfjs-dist/build/pdf.js" type="text/javascript"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-animate.min.js"></script>
@@ -53,6 +55,7 @@
       <md-button class="md-raised" ui-sref="#" ng-show="main.checkLoggedIn()">Hello, {{main.currentUser.local.name}}!</md-button>
       <md-button class="md-raised" ui-sref="songs" ng-show="main.checkLoggedIn()">Songs</md-button>
       <md-button class="md-raised" ui-sref="new-song" ng-show="main.checkLoggedIn()">Add song</md-button>
+      <md-button class="md-raised" ui-sref="upload" ng-show="main.checkLoggedIn()">Add clip</md-button>
       <md-button class="md-raised" ui-sref="profile" ng-show="main.checkLoggedIn()">My profile</md-button>
       <md-button class="md-raised" ui-sref="main" ng-show="main.checkLoggedIn()">main</md-button>
       <md-button class="md-raised" ui-sref="login" ng-hide="main.checkLoggedIn()">Login</md-button>
