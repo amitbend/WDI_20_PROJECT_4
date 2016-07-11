@@ -19,6 +19,8 @@ function usersController(User, TokenService, CurrentUser, $state, $location){
   self.checkLoggedIn = checkLoggedIn;
   self.showUser      = showUser;
 
+self.currentUser = CurrentUser.getUser()
+console.log(self.currentUser);
 
   function getUsers() {
     User.query(function(data){
@@ -30,7 +32,7 @@ function usersController(User, TokenService, CurrentUser, $state, $location){
    var token = res.token ? res.token : null;
    if (token) {
      self.getUsers();
-     $state.go('races');
+     $state.go('songs');
    }
    self.currentUser = CurrentUser.getUser();
  }
