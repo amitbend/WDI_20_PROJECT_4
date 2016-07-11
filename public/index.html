@@ -46,8 +46,8 @@
  
 
 </head>
-<body ng-controller="mainController as main" layout="column" md-theme="teal">
-<header>
+<body layout="column" md-theme="teal">
+<header ng-controller="mainController as main">
 <md-toolbar layout="row" layout-padding class="bg-dark-blue nav-dark" layout-align="end start">
 <div >
       <md-button class="md-raised" ui-sref="#" ng-show="main.checkLoggedIn()">Hello, {{main.currentUser.local.name}}!</md-button>

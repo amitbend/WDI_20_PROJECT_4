@@ -19,10 +19,13 @@ function songsCreate(req, res){
   song.owner = decoded._doc._id;
   User.findById({ _id: decoded._doc._id }, function(err, user) {
     user.songs.push(song);
+    user.save(function(err, user) {
+      res.status(201).send(song);
+    });
   })
   song.save(function(err, song) {
     if (err) return res.status(500).send(err);
-    res.status(201).send(song);
+    console.log(song);
   });
 }
 

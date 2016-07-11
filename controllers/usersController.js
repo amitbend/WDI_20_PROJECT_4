@@ -1,7 +1,7 @@
 var User = require("../models/user");
 
 function usersIndex(req, res){
-  User.find({}, function(err, users) {
+  User.find({}).populate('songs').exec(function(err, users) {
     if (err) return res.status(404).send(err);
     res.status(200).send(users);
   });

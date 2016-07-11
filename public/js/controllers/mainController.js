@@ -15,6 +15,13 @@ function mainController($state, $location, CurrentUser){
   return !!self.currentUser;
  }
 
+ this.logout = function() {
+   self.currentUser = null;
+   CurrentUser.clearUser();
+   
+ }
+
+
 
 
 }

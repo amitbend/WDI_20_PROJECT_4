@@ -17,7 +17,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: "/",
-      templateUrl: "js/views/audio/play.html"
+      templateUrl: "js/views/songs/play.html"
     })
     .state('login', {
       url: "/login",
@@ -45,7 +45,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     })
     .state('play', {
       url: "/play",
-      templateUrl: "js/views/audio/play.html"
+      templateUrl: "js/views/songs/play.html"
     })
   
   $urlRouterProvider.otherwise("/");

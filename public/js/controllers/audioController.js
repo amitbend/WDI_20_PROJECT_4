@@ -42,7 +42,7 @@ function audioController($state, $location, $mdDialog, $scope){
 
 
 
-  PDFObject.embed("music/pdf/gonnasing-sheetmusic.pdf", "#my-container");
+  PDFObject.embed("music/pdf/gonnasing-sheetmusic.pdf", "#pdf-container");
 
   var source     = ["BgVoc1.wav", "BgVoc2.wav", "BgVoc3.wav"]
 
@@ -72,7 +72,6 @@ function audioController($state, $location, $mdDialog, $scope){
   };
 
   function change() {
-    console.log("yo")
     // document.getElementById("clip1").volume = self.changethis/10
     document.getElementById("clip1").volume = this.verticalSlider1.value * 0.1
     document.getElementById("clip2").volume = this.verticalSlider2.value * 0.1
