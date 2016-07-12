@@ -3,7 +3,7 @@
   <h2 class="md-display-3">Play2</h2>
 
   <div>currentTime: {{timeElapsed}}</div>
-  <h3>{{play.verticalSlider1.value}}</h3>
+
 
   <img id='sheet' src={{play.sheetsource}}>
 
@@ -11,14 +11,14 @@
     <a href="#" data-ng-click="play.playSound()"><md-icon md-svg-icon="{{play.playicon}}"></md-icon></a>
     <a href="#" data-ng-click="play.stopSound()"><md-icon md-svg-icon="av:stop"></a>
   </span>
-
+  <h3>Value: {{ch1.value}}</h3>
   <div class="mixer">
 
-   <rzslider class="fader" rz-slider-model="play.ch1.value" rz-slider-options="play.ch1.options" ng-click="play.change()"></rzslider>
+   <rzslider class="fader" rz-slider-model="ch1.value" rz-slider-options="ch1.options" ng-click="play.change()"></rzslider>
 
-   <rzslider class="fader" rz-slider-model="play.ch2.value" rz-slider-options="play.ch1.options" ng-click="play.change()"></rzslider>
+   <rzslider class="fader" rz-slider-model="ch2.value" rz-slider-options="ch1.options" ng-click="play.change()"></rzslider>
 
-   <rzslider class="fader" rz-slider-model="play.ch3.value" rz-slider-options="play.ch1.options" ng-click="play.change()"></rzslider>
+   <rzslider class="fader" rz-slider-model="ch3.value" rz-slider-options="ch1.options" ng-click="play.change()"></rzslider>
 
 
  </div>

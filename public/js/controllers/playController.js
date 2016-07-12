@@ -25,8 +25,20 @@ function playController($scope) {
   var stems       = document.getElementsByClassName("stem");
   self.sheetsource= "https://s3-eu-west-1.amazonaws.com/viktor-wdi20/48d30ed89ca9e0ba5fd32c81c8a491d1"
   $scope.timeElapsed = 0;
-  $scope.vol1 = 0
+  $scope.ch1 = {
+        value: 1,
+        options: {
+            floor: 0,
+            ceil: 10,
+            vertical: true
+        }
+    };
 
+  $scope.ch2 = {value: 3};
+
+  $scope.ch3 = {value: 0};
+
+ 
 
   $scope.$watch('timeElapsed', function() {
        console.log('hey, myVar has changed!');
@@ -37,27 +49,19 @@ function playController($scope) {
    });
 
 
-  $scope.$watch('vol1', function() {
-       console.log('vol has changed!');
-       document.getElementById("clip1").volume = 0.2
- 
+  $scope.$watch('ch1.value', function() {
+       document.getElementById("clip1").volume = $scope.ch1.value * 0.1;
+   });
+  $scope.$watch('ch2.value', function() {
+       document.getElementById("clip2").volume = $scope.ch2.value * 0.1;
+   });
+  $scope.$watch('ch3.value', function() {
+       document.getElementById("clip3").volume = $scope.ch3.value * 0.1;
    });
 
 
 
 
-  self.ch1 = {
-        value: 1,
-        options: {
-            floor: 0,
-            ceil: 10,
-            vertical: true
-        }
-    };
-
-  self.ch2 = {value: 3};
-
-  self.ch3 = {value: 0};
 
 
   
