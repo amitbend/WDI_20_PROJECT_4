@@ -65,17 +65,19 @@ audio {
 }
 
 .selector {
-  height: 250px;
+  height: 90px;
 }
 
 .mixer{
     height: 280px;
     background-color: black;
+    width: 100%;
+    margin: 0px auto;
 }
 
 .mixer > .fader {
   height: 240px;
-  margin: 30px 30px;
+  margin: 30px 60px;
 
 }
 
@@ -115,5 +117,11 @@ form .progress {
 md-icon {
   width: 180px;
   height: 180px;
+}
+
+#sheet {
+  margin: 0 auto;
+  height: 80vh;
+  width: 100%;
 }
 

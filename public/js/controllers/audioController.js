@@ -7,53 +7,22 @@ angular
         .iconSet("social", 'img/icons/sets/social-icons.svg', 24)
         .iconSet("av", 'img/icons/sets/av-icons.svg', 36);
     })
- .directive('fileModel', ['$parse', function ($parse) {
-      return {
-          restrict: 'A',
-          link: function(scope, element, attrs) {
-              var model = $parse(attrs.fileModel);
-              var modelSetter = model.assign;
-              
-              element.bind('change', function(){
-                  scope.$apply(function(){
-                      modelSetter(scope, element[0].files[0]);
-                  });
-              });
-          }
-      };
-  }])
-  .service('fileUpload', ['$http', function ($http) {
-      this.uploadFileToUrl = function(file, uploadUrl){
-          var fd = new FormData();
-          fd.append('file', file);
-          $http.post(uploadUrl, fd, {
-              transformRequest: angular.identity,
-              headers: {'Content-Type': undefined}
-          })
-          .success(function(){
-          })
-          .error(function(){
-          });
-      }
-  }]);
 
  
-audioController.$inject = ['$state', '$location', '$mdDialog', '$scope', 'Upload', '$timeout', 'fileUpload'];
+audioController.$inject = ['$scope', '$state', '$location', '$mdDialog', '$timeout'];
 
-function audioController($state, $location, $mdDialog, $scope, Upload, $timeout, fileUpload){
+function audioController($scope, $state, $location,  $mdDialog, $timeout){
+
+  console.log($scope)
+  console.log(CurrentUser)
  
   var self        = this;
   self.playSound  = playSound;
   self.stopSound  = stopSound;
-  self.name       = 'John';
-  self.select     = select; 
   var stems       = document.getElementsByClassName("stem");
-  self.confirmed  = "poo";
-  self.change     = change;
-  self.changethis = 4;
   self.playicon   = "av:play_arrow";
-
- 
+  self.file       = null;
+  self.sheetsource= "https://s3-eu-west-1.amazonaws.com/viktor-wdi20/48d30ed89ca9e0ba5fd32c81c8a491d1"
 
   
   this.verticalSlider1 = {
@@ -113,34 +82,13 @@ function audioController($state, $location, $mdDialog, $scope, Upload, $timeout,
     document.getElementById("clip4").volume = this.verticalSlider4.value * 0.1 
   }
 
+  if(document.getElementById('clip1').currentTime>2) {
+    self.sheetsource = "https://s3-eu-west-1.amazonaws.com/viktor-wdi20/6daf0118829a6b246a3275121bf9c811"
+  }
 
-  this.upload = function(file) {
-    console.log(Upload);
-    console.log(file);
-      file.upload = Upload.upload({
-        url: 'img',
-        data: {file: file},
-      });
 
-      file.upload.then(function (response) {
-        $timeout(function () {
-          file.result = response.data;
-        });
-      }, function (response) {
-        if (response.status > 0)
-          this.errorMsg = response.status + ': ' + response.data;
-      }, function (evt) {
-        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-      });
-      }
 
-  this.uploadFile = function(){
-      var file = self.myFile;
-      console.log('file is ' );
-      console.dir(file);
-      var uploadUrl = "/fileUpload";
-      fileUpload.uploadFileToUrl(file, uploadUrl);
-  };
 
 
 }
+

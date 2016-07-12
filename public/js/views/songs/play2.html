@@ -1,10 +1,11 @@
 
-<section layout="column" flex="80" flex-offset="10" ng-controller='audioController as audio'>
-  <h2 class="md-display-3">Play</h2>
+<section layout="column" flex="80" flex-offset="10" ng-controller='playController as audio'>
+  <h2 class="md-display-3">Play2</h2>
 
+  <div>currentTime: {{timeElapsed}}</div>
   <h3>{{audio.verticalSlider1.value}}</h3>
 
-  <img id='sheet' src={{audio.timeelapsed}}>
+  <img id='sheet' src={{audio.sheetsource}}>
 
   <span>
     <a href="#" data-ng-click="audio.playSound()"><md-icon md-svg-icon="{{audio.playicon}}"></md-icon></a>
@@ -69,7 +70,7 @@
 
 
 
- <audio id="clip1" class="stem soprano" src="sounds/synth.wav" preload="none" volume=0  autobuffer></audio> 
+ <audio controls myaudio id="clip1" class="stem soprano" src="sounds/synth.wav" preload="none" volume=0   autobuffer></audio> 
  <audio id="clip2" class="stem soprano" src="sounds/operavoc.wav" muted="true" preload="none"  autobuffer></audio> 
 
  <audio id="clip3" class="stem alto" src="sounds/leadvoc.wav"  preload="none"  autobuffer></audio> 

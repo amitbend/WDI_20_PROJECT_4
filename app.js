@@ -1,4 +1,5 @@
 var express        = require('express');
+var aws            = require('aws-sdk')
 var cors           = require('cors');
 var path           = require('path');
 var morgan         = require('morgan');
@@ -10,6 +11,10 @@ var methodOverride = require("method-override");
 var jwt            = require('jsonwebtoken');
 var expressJWT     = require('express-jwt');
 var app            = express();
+var routes         = require('./config/routes');
+var uuid           = require('uuid');
+var multer         = require('multer');
+var s3             = require('multer-s3');
 
 var config         = require('./config/config');
 var User           = require('./models/user');
@@ -31,7 +36,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan('dev'));
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:8000'
+}));
+
 app.use(passport.initialize());
 
 app.use(express.static('public'));
@@ -60,7 +68,43 @@ app.get("/", function(req, res, next){
 //   next();
 // });
 
-var routes = require('./config/routes');
+var s3opt = new aws.S3({ /* ... */ })
+
+
+var upload = multer({
+  storage: s3({
+    s3: s3opt, 
+    // the folder within the bucket
+    dirname: 'uploads',
+    // set this to your bucket name
+    bucket: process.env.WDI_S3_BUCKET,
+    // your AWS keys
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    // the region of your bucket
+    region: 'eu-west-1',
+    // IMPORTANT: set the mime type to that of the file
+    contentType: function(req, file, next) {
+      next(null, file.mimetype);
+    },
+    // IMPORTANT: set the file's filename here
+    // ALWAYS CHANGE THE FILENAME TO SOMETHING RANDOM AND UNIQUE
+    // I'm using uuid (https://github.com/defunctzombie/node-uuid)
+    filename: function(req, file, next) {
+      // Get the file extension from the original filename
+      var ext = '.' + file.originalname.split('.').splice(-1)[0];
+      // create a random unique string and add the file extension
+      var filename = uuid.v1() + ext;
+      next(null, filename);
+    }
+  })
+});
+
+// This will upload a single file.
+app.post('/upload/single', upload.single('file'), function(req, res) {
+  res.status(200).json({ filename: req.file.key });
+});
+
 app.use(routes);
 
 app.listen(config.port);
