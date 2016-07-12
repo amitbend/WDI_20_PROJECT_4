@@ -19,6 +19,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
   <script src="angularjs-slider/dist/rzslider.min.js"></script>
   <script src="external-js/pdfobject.min.js" type="text/javascript"></script>
+  <script src="angularAudioRecorder/dist/angular-audio-recorder.js"></script>
 
 
   <!-- Internal Files -->
@@ -32,9 +33,11 @@
   <script src="./js/controllers/songsController.js"></script>
   <script src="./js/controllers/audioController.js"></script>
   <script src="./js/controllers/playController.js"></script>
+  <script src="./js/controllers/recordController.js"></script>
   <script src="./js/controllers/mainController.js"></script>
   <script src="./js/controllers/uploadController.js"></script>
   <script type="text/javascript" src="js/services/currentUser.js"></script>
+  
 
 
   
@@ -60,7 +63,7 @@
       <md-button class="md-raised" ui-sref="new-song" ng-show="main.checkLoggedIn()">Add song</md-button>
       <md-button class="md-raised" ui-sref="upload" ng-show="main.checkLoggedIn()">Add clip</md-button>
       <md-button class="md-raised" ui-sref="profile" ng-show="main.checkLoggedIn()">My profile</md-button>
-      <md-button class="md-raised" ui-sref="main" ng-show="main.checkLoggedIn()">main</md-button>
+      <md-button class="md-raised" ui-sref="record" ng-show="main.checkLoggedIn()">Record</md-button>
       <md-button class="md-raised" ui-sref="login" ng-hide="main.checkLoggedIn()">Login</md-button>
       <md-button class="md-raised" ui-sref="register" ng-hide="main.checkLoggedIn()">Register</md-button>
       <md-button class="md-raised" ui-sref="home" ng-click="main.logout()" ng-show="main.checkLoggedIn()">Logout</md-button>

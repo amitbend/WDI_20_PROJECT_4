@@ -1,90 +1,131 @@
 
-<section layout="column" flex="80" flex-offset="10" ng-controller='audioController as audio'>
-  <h2 class="md-display-3">Play</h2>
-
-  <h3>{{audio.verticalSlider1.value}}</h3>
-
-  <img id='sheet' src={{audio.timeelapsed}}>
-
+<section layout="column" flex="80" flex-offset="10" ng-controller='playController as play'>
+  <h2 class="md-display-3" ng-click=saveFile()>Soualle</h2>
   <span>
-    <a href="#" data-ng-click="audio.playSound()"><md-icon md-svg-icon="{{audio.playicon}}"></md-icon></a>
-    <a href="#" data-ng-click="audio.stopSound()"><md-icon md-svg-icon="av:stop"></a>
+    <a href="#" data-ng-click="play.playSound()"><md-icon md-svg-icon="{{play.playicon}}"></md-icon></a>
+    <a href="#" data-ng-click="play.stopSound()"><md-icon md-svg-icon="av:stop"></a>
   </span>
 
-  <div class="mixer">
+<h1 ng-click="onsort()">Poo</h1>
 
-   <rzslider class="fader" rz-slider-model="audio.verticalSlider1.value" rz-slider-options="audio.verticalSlider1.options" ng-click="audio.change()"></rzslider>
 
-   <rzslider class="fader" rz-slider-model="audio.verticalSlider2.value" rz-slider-options="audio.verticalSlider1.options" ng-click="audio.change()"></rzslider>
+<!--   <div>currentTime: {{timeElapsed}}</div> -->
+<ng-audio-recorder id="mainAudio" audio-model="recorded" onsort="saveFile()" show-player="false" time-limit="timeLimit">
+    <div ng-if="recorder.isAvailable">
 
-   <rzslider class="fader" rz-slider-model="audio.verticalSlider3.value" rz-slider-options="audio.verticalSlider1.options" ng-click="audio.change()"></rzslider>
+        <div ng-if="recorder.status.isDenied === true" style="color: red;">
+            You need to grant permission for this application to USE your microphone.
+        </div>
+        <button ng-click="recorder.startRecord()" type="button"
+                ng-disabled="recorder.status.isDenied === true || recorder.status.isRecording">
+            Start Record
+        </button>
+        <a ng-click="recorder.test()">Save</a>
+        <button ng-click="recorder.stopRecord()" type="button" ng-disabled="recorder.status.isRecording === false">
+            Stop Record
+        </button>
 
-   <rzslider class="fader" rz-slider-model="audio.verticalSlider4.value" rz-slider-options="audio.verticalSlider1.options" ng-click="audio.change()"></rzslider>
+        <button ng-click="recorder.status.isPlaying ? recorder.playbackPause() : recorder.playbackResume()"
+                type="button" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+            {{recorder.status.isStopped || recorder.status.isPaused ? 'Play' : 'Pause'}}
+        </button>
 
- </div>
+        <button ng-click="recorder.save()" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+            Download
+        </button>
+
+        <div style="max-width: 600px">
+            <div ng-show="recorder.status.isConverting">
+                Please wait while your recording is processed.
+            </div>
+
+            <div ng-show="recorder.isHtml5 && recorder.status.isRecording">
+                <ng-audio-recorder-analyzer></ng-audio-recorder-analyzer>
+            </div>
+            <br/>
+
+            <div ng-show="!recorder.status.isRecording && recorder.audioModel">
+                <ng-audio-recorder-wave-view wave-color="yellow" bar-color="red"></ng-audio-recorder-wave-view>
+            </div>
+        </div>
+
+        <h2 style="font-family: sans-serif; text-align: center; width: 60px; border-radius: 20px;
+    border: solid 2px #333; padding: 20px 10px;" ng-if="recorder.status.isRecording">
+            {{recorder.elapsedTime > 9 ? recorder.elapsedTime : ('0'+recorder.elapsedTime)}}
+        </h2>
+
+
+        <h2 style="font-family: sans-serif; text-align: center; border: solid 2px #333; padding: 20px 10px;"
+            ng-if="recorder.status.isRecording">
+            Remaining Time: {{recorder.timeLimit - recorder.elapsedTime}}
+        </h2>
+    </div>
+
+
+    <div ng-if="!recorder.isAvailable">
+        Your browser does not support this feature natively, please use latest version of <a
+            href="https://www.google.com/chrome/browser" target="_blank">Google Chrome</a> or <a
+            href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Mozilla Firefox</a>. If you're on
+        Safari or Internet Explorer, you can install <a href="https://get.adobe.com/flashplayer/">Adobe Flash</a> to
+        use this feature.
+    </div>
+
+</ng-audio-recorder>
+
+
+
+  <nav>
+
+  <div class="singers">
+    <img src="img/soprano.png">
+    
+    <img src="img/alto.png">
+    
+    <img src="img/baritone.png">
+  </div>  
+
+  <span>
+  <rzslider class="fader" rz-slider-model="ch1.value" rz-slider-options="ch1.options"></rzslider>
+  <rzslider class="fader" rz-slider-model="ch2.value" rz-slider-options="ch1.options"></rzslider>
+  <rzslider class="fader" rz-slider-model="ch3.value" rz-slider-options="ch1.options"></rzslider>
+  </span>
+
+  </nav>
+
+  <img id='sheet' src={{play.sheetsource}}>
 
 <div class="track-label">
 
 <md-button class="md-primary dropdown" ng-Mouseenter="soprano=!soprano" ng-Mouseleave="soprano=!soprano" ng-class="{active:soprano}">
   Soprano
   <ul class="dropdown-menu md-whiteframe-z1">
-    <li><md-button ng-click="audio.select('soprano', 'clip1')">One</md-button></li>
-    <li><md-button ng-click="audio.select('soprano', 'clip2')">Two</md-button></li>
+    <li><md-button ng-click="play.select('soprano', 'clip1')">One</md-button></li>
+    <li><md-button ng-click="play.select('soprano', 'clip2')">Two</md-button></li>
   </ul>
 </md-button>
 
 <md-button class="md-primary dropdown" ng-Mouseenter="alto=!alto" ng-Mouseleave="alto=!alto" ng-class="{active:alto}">
   Alto
   <ul class="dropdown-menu md-whiteframe-z1">
-    <li><md-button ng-click="audio.select('alto', 'clip3')">One</md-button></li>
-    <li><md-button ng-click="audio.select('alto', 'clip4')">Two</md-button></li>
+    <li><md-button ng-click="play.select('alto', 'clip3')">One</md-button></li>
+    <li><md-button ng-click="play.select('alto', 'clip4')">Two</md-button></li>
   </ul>
 </md-button>
 
 <md-button class="md-primary dropdown" ng-Mouseenter="tenor=!tenor" ng-Mouseleave="tenor=!tenor" ng-class="{active:tenor}">
-  Tenor
+  Baritone
   <ul class="dropdown-menu md-whiteframe-z1">
-    <li><md-button ng-click="audio.select('tenor', 'clip7')">One</md-button></li>
-    <li><md-button ng-click="audio.select('tenor', 'clip8')">Two</md-button></li>
+    <li><md-button ng-click="play.select('tenor', 'clip7')">One</md-button></li>
+    <li><md-button ng-click="play.select('tenor', 'clip8')">Two</md-button></li>
   </ul>
 </md-button>
 
-
-<md-button class="md-primary dropdown" ng-Mouseenter="bass=!bass" ng-Mouseleave="bass=!bass" ng-class="{active:bass}">
-  Bass
-  <ul class="dropdown-menu md-whiteframe-z1">
-    <li><md-button ng-click="audio.select('bass', 'clip5')">One</md-button></li>
-    <li><md-button ng-click="audio.select('bass', 'clip6')">Two</md-button></li>
-  </ul>
-</md-button>
 </div>
 
+ <audio myaudio id="clip1" class="stem soprano" src="music/soualle_soprano.mp3" preload="none" autobuffer></audio> 
+ <audio  id="clip2" class="stem soprano" src="music/soualle_alto.mp3"  preload="none" autobuffer></audio> 
+ <audio id="clip3" class="stem baritone" src="music/soualle_baritone.mp3"  preload="none" autobuffer></audio> 
 
 
-
-
-
-
-
-
-
-
- <audio id="clip1" class="stem soprano" src="sounds/synth.wav" preload="none" volume=0  autobuffer></audio> 
- <audio id="clip2" class="stem soprano" src="sounds/operavoc.wav" muted="true" preload="none"  autobuffer></audio> 
-
- <audio id="clip3" class="stem alto" src="sounds/leadvoc.wav"  preload="none"  autobuffer></audio> 
- <audio id="clip4" class="stem alto" src="sounds/leadvoc(clean).wav" muted="true"  preload="none" autobuffer></audio> 
-
- <audio id="clip5" class="stem bass" src="sounds/Drums.wav"  preload="none"  autobuffer></audio> 
- <audio id="clip6" class="stem bass" src="sounds/Speech.wav" muted="true"  preload="none" autobuffer></audio> 
-
- <div class=selector>
-  <span>
-
-
-
-
-  </span>
-</div>
-<div id="pdf-container"></div>
 </section>
+

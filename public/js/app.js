@@ -1,5 +1,5 @@
 angular
-  .module('choir', ['angular-jwt', 'ngResource', 'ui.router', 'ngMaterial', 'rzModule', 'ngFileUpload'])
+  .module('choir', ['angular-jwt', 'ngResource', 'ui.router', 'ngMaterial', 'rzModule', 'ngFileUpload', 'angularAudioRecorder'])
   .constant('API', 'http://localhost:3000')
   .config(MainRouter)
   .config(function($httpProvider) {
@@ -17,7 +17,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: "/",
-      templateUrl: "js/views/songs/play2.html"
+      templateUrl: "js/views/songs/play.html"
     })
     .state('login', {
       url: "/login",
@@ -45,11 +45,15 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     })
     .state('play', {
       url: "/play",
-      templateUrl: "js/views/songs/play2.html"
+      templateUrl: "js/views/songs/play.html"
     })
     .state('upload', {
       url: "/upload",
       templateUrl: "js/views/audio/upload3.html"
+    })
+    .state('record', {
+      url: "/record",
+      templateUrl: "js/views/audio/record.html"
     })
   
   $urlRouterProvider.otherwise("/");

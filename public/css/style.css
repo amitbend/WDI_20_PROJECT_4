@@ -1,5 +1,6 @@
 html {
   font-family: 'Source Sans Pro', sans-serif;
+  text-align: center;
 
 }
 
@@ -75,8 +76,8 @@ audio {
     margin: 0px auto;
 }
 
-.mixer > .fader {
-  height: 240px;
+.fader {
+  width: 100px;
   margin: 30px 60px;
 
 }
@@ -115,8 +116,8 @@ form .progress {
 }
 
 md-icon {
-  width: 180px;
-  height: 180px;
+  width: 90px;
+  height: 90px;
 }
 
 #sheet {
@@ -124,4 +125,22 @@ md-icon {
   height: 80vh;
   width: 100%;
 }
+
+.singer {
+  background-color: yellow;
+  display: inline;
+  width: 200px;
+}
+
+.singers {
+  margin: 0 auto;
+  display: inline-block;
+}
+
+nav {
+  margin: 0 auto;
+  width: 70%;
+  text-align: center;
+}
+
 
