@@ -1,12 +1,7 @@
 angular
   .module('choir')
   .controller('playController', playController)
-  .config(function($mdIconProvider) {
-      $mdIconProvider
-        .iconSet("call", 'img/icons/sets/communication-icons.svg', 24)
-        .iconSet("social", 'img/icons/sets/social-icons.svg', 24)
-        .iconSet("av", 'img/icons/sets/av-icons.svg', 36);
-    });
+
 
 
   angular
@@ -30,6 +25,8 @@ function playController($scope) {
   var stems       = document.getElementsByClassName("stem");
   self.sheetsource= "https://s3-eu-west-1.amazonaws.com/viktor-wdi20/48d30ed89ca9e0ba5fd32c81c8a491d1"
   $scope.timeElapsed = 0;
+  $scope.vol1 = 0
+
 
   $scope.$watch('timeElapsed', function() {
        console.log('hey, myVar has changed!');
@@ -39,8 +36,18 @@ function playController($scope) {
        }
    });
 
-  this.verticalSlider1 = {
-        value: self.changethis,
+
+  $scope.$watch('vol1', function() {
+       console.log('vol has changed!');
+       document.getElementById("clip1").volume = 0.2
+ 
+   });
+
+
+
+
+  self.ch1 = {
+        value: 1,
         options: {
             floor: 0,
             ceil: 10,
@@ -48,11 +55,13 @@ function playController($scope) {
         }
     };
 
-  this.verticalSlider2 = {value: 3};
+  self.ch2 = {value: 3};
 
-  this.verticalSlider3 = {value: 0};
+  self.ch3 = {value: 0};
 
-  this.verticalSlider4 = {value: 0};
+
+  
+
 
   function playSound() {
     for (var i = stems.length - 1; i >= 0; i--) {

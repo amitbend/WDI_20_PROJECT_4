@@ -25,8 +25,8 @@ function audioController($scope, $state, $location,  $mdDialog, $timeout){
   self.sheetsource= "https://s3-eu-west-1.amazonaws.com/viktor-wdi20/48d30ed89ca9e0ba5fd32c81c8a491d1"
 
   
-  this.verticalSlider1 = {
-        value: self.changethis,
+  self.verticalSlider1 = {
+        value: 2,
         options: {
             floor: 0,
             ceil: 10,
@@ -34,11 +34,11 @@ function audioController($scope, $state, $location,  $mdDialog, $timeout){
         }
     };
 
-  this.verticalSlider2 = {value: 3};
+  self.verticalSlider2 = {value: 3};
 
-  this.verticalSlider3 = {value: 0};
+  self.verticalSlider3 = {value: 0};
 
-  this.verticalSlider4 = {value: 0};
+  self.verticalSlider4 = {value: 0};
 
   console.log(this.verticalSlider2.value)
 
