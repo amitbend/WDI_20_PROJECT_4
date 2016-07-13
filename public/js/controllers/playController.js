@@ -24,36 +24,35 @@ angular
     });
 
 
-
-
-playController.$inject = ['$scope', 'CurrentUser'];
-function playController($scope, CurrentUser) {
+playController.$inject = ['$scope', 'CurrentUser', 'Upload'];
+function playController($scope, CurrentUser, Upload) {
   var self        = this;
   self.playSound  = playSound;
   self.stopSound  = stopSound;
   self.playicon   = "av:play_arrow";
   self.house      = CurrentUser.house;
-console.log("THIS IS FASZ" + CurrentUser.house)
   var stems       = document.getElementsByClassName("stem");
   self.sheetsource= "https://s3-eu-west-1.amazonaws.com/viktor-wdi20/48d30ed89ca9e0ba5fd32c81c8a491d1"
+
+
+
+
+
   $scope.timeElapsed = 0;
+  //record
   $scope.timeLimit = 10;
-  $scope.yo = "oioioioioioioio"
+  
+  $scope.ker = function(){return "yoooooooKK";}
   $scope.ch1 = {
         value: 1,
         options: {
             floor: 0,
             ceil: 10,
-
         }
     };
 
   $scope.ch2 = {value: 3};
-
   $scope.ch3 = {value: 0};
-
- 
-
   $scope.$watch('timeElapsed', function() {
 
        if(document.getElementById('clip1').currentTime > 8.5) {
@@ -63,12 +62,8 @@ console.log("THIS IS FASZ" + CurrentUser.house)
        if(document.getElementById('clip1').currentTime > 17.4) {
             self.sheetsource = "https://s3-eu-west-1.amazonaws.com/viktor-wdi20/5f0995217dab426ca2b0115cc25b8126";
        }
-
-
        
    });
-
-
 
 
   $scope.$watch('ch1.value', function() {
@@ -96,7 +91,23 @@ console.log("THIS IS FASZ" + CurrentUser.house)
     self.playicon = "av:play_arrow"
   }
 
-
-
+  $scope.uploadRec = function(recordedFile) {
+    console.log("yesssss")
+    Upload.upload({
+      url: 'http://localhost:3000/upload/single',
+      data: { file: recordedFile }
+    })
+    .then(function(res) {
+      console.log("Success!");
+      console.log("File name");
+      console.log(res.data.filename);
+      console.log(res);
+    })
+    .catch(function(err) {
+      console.error(err);
+    });
+  }
 
 }
+
+

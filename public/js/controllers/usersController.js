@@ -18,8 +18,7 @@ function usersController(User, TokenService, CurrentUser, $state, $location){
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
   self.showUser      = showUser;
-
-self.currentUser = CurrentUser.getUser()
+  self.currentUser = CurrentUser.getUser()
 console.log(self.currentUser);
 
   function getUsers() {
@@ -71,7 +70,9 @@ this.displayUser = function() {
   console.log(self.selectedUser)
 }
 
-
+this.deleteUser = function() {
+  console.log(self.selectedUser)
+}
 
 
 if (checkLoggedIn()) {

@@ -1,10 +1,24 @@
 var mongoose = require('mongoose');
 
-var SongSchema = mongoose.Schema({
+var clipSchema = mongoose.Schema({
+  singer: String,
+  file: String
+})
+
+var channelSchema = mongoose.Schema({
+  type: String,
+  avatar: String,
+  clips: [clipSchema]
+})
+
+var songSchema = mongoose.Schema({
   title: String,
-  location: String,
+  channels: [channelSchema],
   owner: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
 });
 
-module.exports = mongoose.model('Song', SongSchema);
+
+
+
+module.exports = mongoose.model('Song', songSchema);
 

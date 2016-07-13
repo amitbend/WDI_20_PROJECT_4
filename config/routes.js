@@ -23,6 +23,9 @@ router.route('/songs')
   .get(songsController.songsIndex)
   .post(songsController.songsCreate)
 
+router.route('/songs/:id')
+  .delete(songsController.songsDelete)
+
 router.route
 
 module.exports = router;

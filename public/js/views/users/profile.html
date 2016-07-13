@@ -16,7 +16,7 @@
 
   <div id="users" flex-offset="20" flex="60" ng-controller='songsController as songs' class="md-whiteframe-15dp display">
   <h2 class="md-display-3">My songs</h2>
-  <h3>{{users.selectedUser.songs}}</h3>
+  <h3>{{users.CurrentUser.email}}</h3>
   <input type="text" ng-model="searchBox">
 
 
@@ -25,10 +25,11 @@
         <md-list-item class="md-3-line" ng-repeat="song in users.currentUser.songs | filter: searchBox" >
           <img ng-src="" alt="test" class="md-avatar">
           <div class="md-list-item-text">
+
             <h3>{{song.title}}</h3>
             <h4>{{song.location}}</h4>
-            <a href='#' ng-click="users.deleteUser(user)">Delete</a> 
-            <a href='#' ng-click="users.editUser(user)" >Edit</a>
+            <button ng-click="songs.deleteSong(song)">Delete</button> 
+            <a href='#' ng-click="songs.editSong(song)" >Edit</a>
             
           </div>
           <md-divider inset></md-divider>

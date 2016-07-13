@@ -29,7 +29,16 @@ function songsCreate(req, res){
   });
 }
 
+function songsDelete(req, res){
+  var id = req.params.id;
+  Song.remove({ _id: id }, function(err) {
+    if (err) return res.status(500).send(err);
+    res.status(204).send();
+  });
+}
+
 module.exports = {
   songsIndex:  songsIndex,
   songsCreate: songsCreate,
+  songsDelete: songsDelete
 };

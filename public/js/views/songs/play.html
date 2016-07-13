@@ -8,6 +8,10 @@
 
 <h1 ng-click="onsort()">Poo</h1>
 
+<ul>
+<li ng-repeat="clip in play.songs">Yo</li>
+</ul>
+
 
 <!--   <div>currentTime: {{timeElapsed}}</div> -->
 <ng-audio-recorder id="mainAudio" audio-model="recorded" onsort="saveFile()" show-player="false" time-limit="timeLimit">
@@ -71,7 +75,6 @@
     </div>
 
 </ng-audio-recorder>
-
 
 
   <nav>
