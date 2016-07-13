@@ -16,9 +16,7 @@
         <input type="text" placeholder="Name" ng-model="users.user.name">
       </md-input-container>
 
-      <md-input-container class="md-icon-float md-block">       
-        <input type="text" placeholder="Image" ng-model="users.user.image">
-      </md-input-container>
+
 
       <md-input-container class="md-icon-float md-block"> 
         <input type="email" placeholder="Email" ng-model="users.user.email">
@@ -44,6 +42,12 @@
       <md-input-container class="md-icon-float md-block">
         <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" placeholder="Password Confirmation" ng-model="users.user.passwordConfirmation" required>
       </md-input-container>
+
+
+          <input type="file"ngf-select ng-model="users.file" name="file">Select File</div>
+          <p ng-click="users.uploadSingle()">Upload</p>
+        
+
 
       <div class="alert alert-danger" role="alert" ng-messages="users.registerForm['passwordConfirmation'].$error" ng-show="(users.registerForm.$submitted && users.registerForm['passwordConfirmation'].$invalid)">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

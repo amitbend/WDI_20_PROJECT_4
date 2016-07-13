@@ -2,8 +2,8 @@ angular
 .module('choir')
 .controller('usersController', usersController);
 
-usersController.$inject = ['User', 'TokenService', 'CurrentUser', '$state', '$location'];
-function usersController(User, TokenService, CurrentUser, $state, $location){
+usersController.$inject = ['User', 'TokenService', 'CurrentUser', '$state', '$location', 'Upload'];
+function usersController(User, TokenService, CurrentUser, $state, $location, Upload){
 
   var self = this;
 
@@ -20,6 +20,9 @@ function usersController(User, TokenService, CurrentUser, $state, $location){
   self.showUser      = showUser;
   self.currentUser = CurrentUser.getUser()
 console.log(self.currentUser);
+  self.file = null;
+
+
 
   function getUsers() {
     User.query(function(data){
@@ -72,6 +75,24 @@ this.displayUser = function() {
 
 this.deleteUser = function() {
   console.log(self.selectedUser)
+}
+
+this.uploadSingle = function() {
+
+  Upload.upload({
+    url: 'http://localhost:3000/upload/single',
+    data: { file: self.file }
+  })
+  .then(function(res) {
+    self.user.image = res.data.filename;
+    console.log("Success!");
+    console.log("File name");
+    console.log(res.data.filename);
+    console.log(res);
+  })
+  .catch(function(err) {
+    console.error(err);
+  });
 }
 
 

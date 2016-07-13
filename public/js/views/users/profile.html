@@ -6,9 +6,9 @@
     <ul class="md-whiteframe-15dp">
       <li class='user-tile'>
         <h2>{{users.currentUser.local.name}}</h2> 
+        <img src="https://s3-eu-west-1.amazonaws.com/viktor-wdi20/{{users.currentUser.local.image}}">
         <p>{{users.currentUser.local.username}}</p>
         <p>{{users.currentUser.local.email}}</p>
-        <a href='#' ng-click="users.deleteUser(user)">Delete</a> 
         <a href='#' ng-click="users.editUser(user)" >Edit</a>
       </li>
     </ul>

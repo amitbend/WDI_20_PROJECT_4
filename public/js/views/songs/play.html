@@ -1,20 +1,48 @@
 
 <section class="md-whiteframe-10dp"  layout="column" flex="80" flex-offset="10" ng-controller='playController as play'>
 
+
   <div class="singers">
-    <img src="img/soprano.png">
-    
+  <div class="singer">
+    <img src="img/soprano.png"> 
+  </div>
+  <div class="singer">
     <img src="img/alto.png">
-    
+   </div>
+   <div class="singer"> 
     <img src="img/baritone.png">
-  </div>  
-  <nav>
-    <span>
+    </div>
+
+  </div> 
+    <div class="singers"> 
+    <div class="singer">
+    <i class="material-icons">arrow_backward</i>
+    <i class="material-icons">arrow_forward</i>
+
+
+    </div>
+    <div class="singer">
+    <i class="material-icons">arrow_backward</i>
+    <i class="material-icons">arrow_forward</i>
+
+    </div>
+    <div class="singer">
+    <i class="material-icons">arrow_backward</i>
+    <i class="material-icons">arrow_forward</i>
+
+    </div>
+  </div>
+  <div class="singers"> 
+  <div class="singer">
       <rzslider class="fader" rz-slider-model="ch1.value" rz-slider-options="ch1.options"></rzslider>
+  </div>
+  <div class="singer">
       <rzslider class="fader" rz-slider-model="ch2.value" rz-slider-options="ch1.options"></rzslider>
+  </div>
+  <div class="singer">
       <rzslider class="fader" rz-slider-model="ch3.value" rz-slider-options="ch1.options"></rzslider>
-    </span>
-  </nav>
+  </div>
+</div>
 
   <span>
     <a href="#" data-ng-click="play.recSound()"><i class="material-icons">fiber_manual_record</i></a>
@@ -72,46 +100,13 @@
 
     </ng-audio-recorder>
 
-    <ul>
-      <li ng-repeat="clip in play.songs">Yo</li>
-    </ul>
+
 
     <img id='sheet' src={{play.sheetsource}}>
 
 
 
 
-
-
-
-
-    <div class="track-label">
-
-      <!-- <md-button class="md-primary dropdown" ng-Mouseenter="soprano=!soprano" ng-Mouseleave="soprano=!soprano" ng-class="{active:soprano}">
-        Soprano
-        <ul class="dropdown-menu md-whiteframe-z1">
-          <li><md-button ng-click="play.select('soprano', 'clip1')">One</md-button></li>
-          <li><md-button ng-click="play.select('soprano', 'clip2')">Two</md-button></li>
-        </ul>
-      </md-button>
-
-      <md-button class="md-primary dropdown" ng-Mouseenter="alto=!alto" ng-Mouseleave="alto=!alto" ng-class="{active:alto}">
-        Alto
-        <ul class="dropdown-menu md-whiteframe-z1">
-          <li><md-button ng-click="play.select('alto', 'clip3')">One</md-button></li>
-          <li><md-button ng-click="play.select('alto', 'clip4')">Two</md-button></li>
-        </ul>
-      </md-button>
-
-      <md-button class="md-primary dropdown" ng-Mouseenter="tenor=!tenor" ng-Mouseleave="tenor=!tenor" ng-class="{active:tenor}">
-        Baritone
-        <ul class="dropdown-menu md-whiteframe-z1">
-          <li><md-button ng-click="play.select('tenor', 'clip7')">One</md-button></li>
-          <li><md-button ng-click="play.select('tenor', 'clip8')">Two</md-button></li>
-        </ul>
-      </md-button> -->
-
-    </div>
 
     <audio myaudio id="clip1" class="stem soprano" src="music/soualle_soprano.mp3" preload="none" autobuffer></audio> 
     <audio  id="clip2" class="stem soprano" src="music/soualle_alto.mp3"  preload="none" autobuffer></audio> 

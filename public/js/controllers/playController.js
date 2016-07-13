@@ -34,23 +34,30 @@ function playController($scope, CurrentUser, Upload, appService , recorderServic
   var stems         = document.getElementsByClassName("stem");
   self.sheetsource  = "https://s3-eu-west-1.amazonaws.com/viktor-wdi20/48d30ed89ca9e0ba5fd32c81c8a491d1"
   self.songs        = null;
+  self.user         = CurrentUser.getUser();
+console.log(CurrentUser.getUser())
   self.selectedSong = appService.selectedSong;
+
+console.log(self.selectedSong)
+
+
+// <img src="https://s3-eu-west-1.amazonaws.com/viktor-wdi20/{{play.user.local.image}}">
+
 
 
   $scope.timeElapsed = 0;
   //record
   
-  $scope.ker = function(){return "yoooooooKK";}
   $scope.ch1 = {
-        value: 1,
+        value: 10,
         options: {
             floor: 0,
             ceil: 10,
         }
     };
 
-  $scope.ch2 = {value: 3};
-  $scope.ch3 = {value: 0};
+  $scope.ch2 = {value: 10};
+  $scope.ch3 = {value: 10};
   $scope.$watch('timeElapsed', function() {
 
        if(document.getElementById('clip1').currentTime > 8.5) {
@@ -88,7 +95,6 @@ function playController($scope, CurrentUser, Upload, appService , recorderServic
   function stopSound() {
 
     recorderService.controller("mainAudio").stopRecord();
-
     for (var i = stems.length - 1; i >= 0; i--) {
       stems[i].load()
     }
@@ -107,7 +113,6 @@ function playController($scope, CurrentUser, Upload, appService , recorderServic
 
 
   $scope.uploadRec = function(recordedFile) {
-    console.log("yesssss")
     Upload.upload({
       url: 'http://localhost:3000/upload/single',
       data: { file: recordedFile }

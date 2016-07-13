@@ -1,5 +1,5 @@
 angular
-  .module('choir', ['angular-jwt', 'ngResource', 'ui.router', 'ngMaterial', 'rzModule', 'ngFileUpload', 'angularAudioRecorder'])
+  .module('choir', ['angular-jwt', 'ngResource', 'ui.router', 'ngMaterial', 'rzModule', 'ngFileUpload', 'angularAudioRecorder', 'mgcrea.ngStrap'])
   .constant('API', 'http://localhost:3000')
   .config(MainRouter)
   .config(function($httpProvider) {
@@ -49,7 +49,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     })
     .state('upload', {
       url: "/upload",
-      templateUrl: "js/views/audio/upload3.html"
+      templateUrl: "js/views/audio/upload.html"
     })
     .state('record', {
       url: "/record",

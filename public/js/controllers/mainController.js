@@ -1,8 +1,7 @@
 angular
   .module('choir')
   .controller('mainController', mainController)
-
- 
+  
 audioController.$inject = ['$state', '$location', 'CurrentUser'];
 
 function mainController($state, $location, CurrentUser){

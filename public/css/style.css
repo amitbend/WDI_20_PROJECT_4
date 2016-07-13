@@ -4,7 +4,7 @@ html {
 }
 
 main {
-  background-image: url("../img/funky.jpg");
+/*  background-image: url("../img/funky.jpg");*/
   background-repeat: no-repeat;
      background-attachment: fixed;
      background-position: center; 
@@ -92,8 +92,8 @@ audio {
 }
 
 .fader {
-  width: 80px;
-  margin: 30px 60px;
+  width: 150px;
+
 
 }
 
@@ -142,24 +142,23 @@ md-icon {
   border-radius: 40px;
 }
 
-.singer {
-  background-color: yellow;
-  display: inline;
-  width: 200px;
-}
 
 .singers {
   margin: 0 auto;
-  display: inline-block;
 }
 
 .singers img {
   width: 150px;
+  display: inline-block;
+}
+
+.singer {
+  width:22%;
+  display: inline; 
 }
 
 nav {
   margin: 0 auto;
-  width: 70%;
   text-align: center;
 }
 

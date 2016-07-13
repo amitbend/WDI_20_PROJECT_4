@@ -7,7 +7,6 @@ function uploadController(Upload) {
   var self = this;
 
   self.file = null;
-  self.files = null;
   
   this.uploadSingle = function() {
     Upload.upload({

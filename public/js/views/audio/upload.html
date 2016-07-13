@@ -1,27 +1,11 @@
-<section layout="column" flex="60" flex-offset="20" ng-controller='audioController as audio'>
+<section layout="column" flex="60" flex-offset="20" ng-controller='uploadController as upload'>
   <h2 class="md-display-3">Upload</h2>
-  <form name="myForm">
-    <fieldset>
-      <legend>Upload on form submit</legend>
 
-      <br>Photo:
-      <input type="file" ngf-select ng-model="clipFile" name="file"    
-      accept="image/*" ngf-max-size="2MB" required
-      ngf-model-invalid="errorFile">
-      <i ng-show="myForm.file.$error.required">*required</i><br>
-      <i ng-show="myForm.file.$error.maxSize">File too large 
-        {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
-        <img ng-show="myForm.file.$valid" ngf-thumbnail="clipFile" class="thumb"> <button ng-click="clipFile = null" ng-show="file">Remove</button>
-        <br>
-        <button ng-disabled="!myForm.$valid" 
-        ng-click="audio.upload(clipFile)">Submit</button>
-        <span class="progress" ng-show="clipFile.progress >= 0">
-          <div style="width:{{clipFile.progress}}%" 
-          ng-bind="clipFile.progress + '%'"></div>
-        </span>
-        <span ng-show="clipFile.result">Upload Successful</span>
-        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-      </fieldset>
-      <br>
+  Upload single file on form submit
+    <form name="main.form" ng-submit="upload.uploadSingle()">
+      <input type="file"ngf-select ng-model="upload.file" name="file">Select File</div>
+      <button type="submit">Submit</button>
     </form>
+
+
   </section>
