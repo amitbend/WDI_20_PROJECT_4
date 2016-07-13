@@ -24,16 +24,17 @@ angular
     });
 
 
-playController.$inject = ['$scope', 'CurrentUser', 'Upload'];
-function playController($scope, CurrentUser, Upload) {
-  var self        = this;
-  self.playSound  = playSound;
-  self.stopSound  = stopSound;
-  self.playicon   = "av:play_arrow";
-  self.house      = CurrentUser.house;
-  var stems       = document.getElementsByClassName("stem");
-  self.sheetsource= "https://s3-eu-west-1.amazonaws.com/viktor-wdi20/48d30ed89ca9e0ba5fd32c81c8a491d1"
-
+playController.$inject = ['$scope', 'CurrentUser', 'Upload', 'appService'];
+function playController($scope, CurrentUser, Upload, appService) {
+  var self          = this;
+  self.playSound    = playSound;
+  self.stopSound    = stopSound;
+  self.playicon     = "av:play_arrow";
+  self.house        = CurrentUser.house;
+  var stems         = document.getElementsByClassName("stem");
+  self.sheetsource  = "https://s3-eu-west-1.amazonaws.com/viktor-wdi20/48d30ed89ca9e0ba5fd32c81c8a491d1"
+  self.songs        = null;
+  self.selectedSong = appService.selectedSong;
 
 
 
@@ -107,6 +108,15 @@ function playController($scope, CurrentUser, Upload) {
       console.error(err);
     });
   }
+
+
+  function getSongs(){
+    Song.query(function(data){
+      self.all = data;
+      console.log = data;
+    });
+  }
+
 
 }
 

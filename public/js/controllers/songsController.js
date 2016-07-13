@@ -2,17 +2,18 @@ angular
   .module('choir')
   .controller('songsController', songsController)
 
-songsController.$inject = ['Song', '$state', '$location', 'CurrentUser'];
+songsController.$inject = ['Song', '$state', '$location', 'CurrentUser', 'appService'];
 
-function songsController(Song, $state, $location, CurrentUser){
+function songsController(Song, $state, $location, CurrentUser, appService){
 
   var self          = this;
   self.newSong      = {};
   self.newSong.channels = [];
   self.all          = null;
   self.getSongs     = getSongs;
-  self.selectedSong = null;
   self.selectSong   = selectSong;
+  self.selectedSong = appService.selectedSong
+console.log(appService.selectedSong)
 
   
 getSongs();
@@ -66,7 +67,7 @@ this.addSong = function(){
 
 
   function selectSong(song){
-    self.selectedSong = song
+    appService.selectedSong = song;
     }
 
 

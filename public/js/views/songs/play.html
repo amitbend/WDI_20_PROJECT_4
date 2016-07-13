@@ -1,16 +1,18 @@
 
 <section layout="column" flex="80" flex-offset="10" ng-controller='playController as play'>
-  <h2 class="md-display-3" ng-click=saveFile()>Soualle</h2>
   <span>
     <a href="#" data-ng-click="play.playSound()"><md-icon md-svg-icon="{{play.playicon}}"></md-icon></a>
     <a href="#" data-ng-click="play.stopSound()"><md-icon md-svg-icon="av:stop"></a>
+    <a href="#" data-ng-click="play.stopSound()"><i class="material-icons">fiber_manual_record</i></a>
   </span>
 
-<h1 ng-click="onsort()">Poo</h1>
+  <h2 ng-click="recorder.yo()">{{play.selectedSong}}</h2>
 
 <ul>
 <li ng-repeat="clip in play.songs">Yo</li>
 </ul>
+
+<img id='sheet' src={{play.sheetsource}}>
 
 
 <!--   <div>currentTime: {{timeElapsed}}</div> -->
@@ -24,7 +26,7 @@
                 ng-disabled="recorder.status.isDenied === true || recorder.status.isRecording">
             Start Record
         </button>
-        <a ng-click="recorder.test()">Save</a>
+        <a ng-click="recorder.saveFile()">Save</a>
         <button ng-click="recorder.stopRecord()" type="button" ng-disabled="recorder.status.isRecording === false">
             Stop Record
         </button>
@@ -95,7 +97,7 @@
 
   </nav>
 
-  <img id='sheet' src={{play.sheetsource}}>
+
 
 <div class="track-label">
 
