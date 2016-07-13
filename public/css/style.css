@@ -1,7 +1,22 @@
 html {
   font-family: 'Source Sans Pro', sans-serif;
   text-align: center;
+}
 
+main {
+  background-image: url("../img/funky.jpg");
+  background-repeat: no-repeat;
+     background-attachment: fixed;
+     background-position: center; 
+}
+
+md-toolbar {
+  height: 20px;
+}
+
+.md-button {
+    height: 10px;
+    
 }
 
 form {
@@ -77,7 +92,7 @@ audio {
 }
 
 .fader {
-  width: 100px;
+  width: 80px;
   margin: 30px 60px;
 
 }
@@ -124,6 +139,7 @@ md-icon {
   margin: 0 auto;
   height: 80vh;
   width: 100%;
+  border-radius: 40px;
 }
 
 .singer {
@@ -137,10 +153,34 @@ md-icon {
   display: inline-block;
 }
 
+.singers img {
+  width: 150px;
+}
+
 nav {
   margin: 0 auto;
   width: 70%;
   text-align: center;
 }
 
+#mainAudio button {
+  width: 80px;
+  color: purple;
+}
 
+#wave {
+  border: 1px solid black;
+  position: absolute;
+}
+
+.menudemoMenuPositionModes .md-menu-demo {
+  padding: 24px; }
+.menudemoMenuPositionModes .menu-demo-container {
+  min-height: 200px; }
+
+.burger {
+  position: absolute;
+  top:0;
+  right: 0;
+  width: 80px;
+}

@@ -21,7 +21,6 @@
   <script src="external-js/pdfobject.min.js" type="text/javascript"></script>
   <script src="angularAudioRecorder/dist/angular-audio-recorder.js"></script>
 
-
   <!-- Internal Files -->
   <script src="./js/app.js"></script>
   <script type="text/javascript" src="js/services/authInterceptor.js"></script>
@@ -40,38 +39,51 @@
   <script src="./js/controllers/mainController.js"></script>
   <script src="./js/controllers/uploadController.js"></script>
   
-  
-
-
-  
-
   <!-- Stylesheets -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600" rel="stylesheet">
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.9/angular-material.min.css">
   <link rel="stylesheet" type="text/css" href="css/reset.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="angularjs-slider/dist/rzslider.css"/>
   <link rel="stylesheet" type="text/css" href="./css/style.css">
 
-
- 
-
 </head>
 <body layout="column" md-theme="teal">
 <header ng-controller="mainController as main">
-<md-toolbar layout="row" layout-padding class="bg-dark-blue nav-dark" layout-align="end start">
-<div >
-      <md-button class="md-raised" ui-sref="#" ng-show="main.checkLoggedIn()">Hello, {{main.currentUser.local.name}}!</md-button>
-      <md-button class="md-raised" ui-sref="songs" ng-show="main.checkLoggedIn()">Songs</md-button>
-      <md-button class="md-raised" ui-sref="new-song" ng-show="main.checkLoggedIn()">Add song</md-button>
-      <md-button class="md-raised" ui-sref="upload" ng-show="main.checkLoggedIn()">Add clip</md-button>
-      <md-button class="md-raised" ui-sref="profile" ng-show="main.checkLoggedIn()">My profile</md-button>
-      <md-button class="md-raised" ui-sref="record" ng-show="main.checkLoggedIn()">Record</md-button>
-      <md-button class="md-raised" ui-sref="login" ng-hide="main.checkLoggedIn()">Login</md-button>
-      <md-button class="md-raised" ui-sref="register" ng-hide="main.checkLoggedIn()">Register</md-button>
-      <md-button class="md-raised" ui-sref="home" ng-click="main.logout()" ng-show="main.checkLoggedIn()">Logout</md-button>
-</div>
-</md-toolbar>
+
+  
+  <md-menu layout="row" layout-align="end start" md-position-mode="target-right target">
+            <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+              <i class="material-icons">menu</i>
+            </md-button>
+            <md-menu-content width="4">
+              <md-menu-item layout="row" ng-show="main.checkLoggedIn()">     
+                <md-button class="md-raised" ui-sref="songs" >Songs</md-button>
+              </md-menu-item>
+              <md-menu-item layout="row" ng-show="main.checkLoggedIn()">     
+                <md-button class="md-raised" ui-sref="new-song">Add song</md-button>
+              </md-menu-item>
+              <md-menu-item layout="row" ng-show="main.checkLoggedIn()">     
+                <md-button class="md-raised" ui-sref="upload">Add clip</md-button>
+              </md-menu-item>
+              <md-menu-item layout="row" ng-show="main.checkLoggedIn()">     
+                <md-button class="md-raised" ui-sref="profile">My profile</md-button>
+              </md-menu-item>
+              <md-menu-item layout="row" ng-show="main.checkLoggedIn()">     
+                <md-button class="md-raised" ui-sref="record">Record</md-button>
+              </md-menu-item>
+              <md-menu-item layout="row" ng-hide="main.checkLoggedIn()">     
+                <md-button class="md-raised" ui-sref="login">Login</md-button>
+              </md-menu-item>
+              <md-menu-item layout="row" ng-hide="main.checkLoggedIn()">     
+                <md-button class="md-raised" ui-sref="register">Register</md-button>
+              </md-menu-item>
+              <md-menu-item layout="row" ng-show="main.checkLoggedIn()">     
+                <md-button class="md-raised" ui-sref="home" ng-click="main.logout()">Logout</md-button>
+              </md-menu-item>
+            </md-menu-content>
+  </md-menu>
+
 </header>
 
   <main class="container" ui-view></main>

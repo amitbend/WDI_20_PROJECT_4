@@ -11,9 +11,19 @@
      
     </md-input-container>
 
-    <md-input-container class="md-icon-float md-block">   
-      <input type="text" placeholder="Songlocation" ng-model="songs.newSong.location">
+    <md-input-container class="md-icon-float md-block"> 
+    <p href="#" ng-click="songs.addChannel()">Add channel</p>
+
     </md-input-container>
+    <div class="singers">
+      <img src="img/soprano.png" id="choiceSoprano" ng-click="songs.addChannel('soprano')">
+      
+      <img src="img/alto.png" id="choiceAlto" ng-click="songs.addChannel('alto')">
+      
+      <img src="img/baritone.png" id="choiceBaritone" ng-click="songs.addChannel('baritone')">
+    </div>  
+
+    
 
     <md-button type="submit" class="md-raised">Submit</md-button>
 

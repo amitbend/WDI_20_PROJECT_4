@@ -2,13 +2,14 @@ angular
   .module('choir')
   .controller('songsController', songsController)
 
-songsController.$inject = ['Song', '$state', '$location', 'CurrentUser', 'appService'];
+songsController.$inject = ['$scope', 'Song', '$state', '$location', 'CurrentUser', 'appService'];
 
-function songsController(Song, $state, $location, CurrentUser, appService){
+function songsController($scope, Song, $state, $location, CurrentUser, appService){
 
   var self          = this;
-  self.newSong      = {};
-  self.newSong.channels = [];
+  $scope.newSong = {};
+  $scope.newSong.channels = [];
+  $scope.newSong.channelnumbers = "1";
   self.all          = null;
   self.getSongs     = getSongs;
   self.selectSong   = selectSong;
@@ -25,13 +26,12 @@ function getSongs(){
 }
 
 this.addSong = function(){
-    console.log("adding song" + self.all)
-    self.newSong.channels.push({type:"Test type"})
-    Song.save({song: self.newSong}, function(response){
-        self.all.push(self.newSong);
+
+  Song.save({song: $scope.newSong}, function(response){
+        self.all.push($scope.newSong);
         // owner = CurrentUser.getuser();
         // owner.songs.push(self.newSong);
-        self.newSong = {}
+        $scope.newSong = {}
     });  
   }
 
@@ -50,8 +50,6 @@ this.addSong = function(){
     })
     }
 
-
-
   self.deleteSong = function(song){
     console.log("deleting")
     Song.delete({id: song._id}, function(err) {
@@ -63,6 +61,25 @@ this.addSong = function(){
       user.songs.splice(index2, 1); 
     })
     }
+
+
+   self.addChannel = function(type) {
+    console.log('adding channel');
+    switch(type) {
+        case "soprano":
+            document.getElementById("choiceSoprano").style.opacity = 0.2;
+            $scope.newSong.channels.push({type: "soprano", avatar:"img/soprano.png"})
+            break;
+        case "alto":
+            document.getElementById("choiceAlto").style.opacity = 0.2;
+            $scope.newSong.channels.push({type: "soprano", avatar:"img/alto.png"})
+            break;
+        case "baritone":
+            document.getElementById("choiceBaritone").style.opacity = 0.2;
+            $scope.newSong.channels.push({type: "soprano", avatar:"img/baritone.png"})
+            break;
+    }
+   }
 
 
 

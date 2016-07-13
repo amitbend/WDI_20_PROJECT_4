@@ -5,7 +5,8 @@ angular
       $mdIconProvider
         .iconSet("call", 'img/icons/sets/communication-icons.svg', 24)
         .iconSet("social", 'img/icons/sets/social-icons.svg', 24)
-        .iconSet("av", 'img/icons/sets/av-icons.svg', 36);
+        .iconSet("av", 'img/icons/sets/av-icons.svg', 36)
+        .iconSet("av", 'img/icons/sets/navigation-icons.svg', 36);
     })
 
  

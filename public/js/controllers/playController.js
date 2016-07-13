@@ -24,8 +24,8 @@ angular
     });
 
 
-playController.$inject = ['$scope', 'CurrentUser', 'Upload', 'appService'];
-function playController($scope, CurrentUser, Upload, appService) {
+playController.$inject = ['$scope', 'CurrentUser', 'Upload', 'appService' , 'recorderService'];
+function playController($scope, CurrentUser, Upload, appService , recorderService) {
   var self          = this;
   self.playSound    = playSound;
   self.stopSound    = stopSound;
@@ -37,11 +37,8 @@ function playController($scope, CurrentUser, Upload, appService) {
   self.selectedSong = appService.selectedSong;
 
 
-
-
   $scope.timeElapsed = 0;
   //record
-  $scope.timeLimit = 10;
   
   $scope.ker = function(){return "yoooooooKK";}
   $scope.ch1 = {
@@ -79,6 +76,9 @@ function playController($scope, CurrentUser, Upload, appService) {
 
 
   function playSound() {
+
+    recorderService.controller("mainAudio").playbackResume();
+
     for (var i = stems.length - 1; i >= 0; i--) {
       stems[i].play()
     }
@@ -86,11 +86,25 @@ function playController($scope, CurrentUser, Upload, appService) {
   }
 
   function stopSound() {
+
+    recorderService.controller("mainAudio").stopRecord();
+
     for (var i = stems.length - 1; i >= 0; i--) {
       stems[i].load()
     }
     self.playicon = "av:play_arrow"
   }
+
+  self.recSound = function() {
+
+    recorderService.controller("mainAudio").startRecord();
+
+    for (var i = stems.length - 1; i >= 0; i--) {
+      stems[i].play()
+    }
+    self.playicon = "av:pause";
+  }
+
 
   $scope.uploadRec = function(recordedFile) {
     console.log("yesssss")

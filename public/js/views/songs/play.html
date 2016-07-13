@@ -1,85 +1,5 @@
 
-<section layout="column" flex="80" flex-offset="10" ng-controller='playController as play'>
-  <span>
-    <a href="#" data-ng-click="play.playSound()"><md-icon md-svg-icon="{{play.playicon}}"></md-icon></a>
-    <a href="#" data-ng-click="play.stopSound()"><md-icon md-svg-icon="av:stop"></a>
-    <a href="#" data-ng-click="play.stopSound()"><i class="material-icons">fiber_manual_record</i></a>
-  </span>
-
-  <h2 ng-click="recorder.yo()">{{play.selectedSong}}</h2>
-
-<ul>
-<li ng-repeat="clip in play.songs">Yo</li>
-</ul>
-
-<img id='sheet' src={{play.sheetsource}}>
-
-
-<!--   <div>currentTime: {{timeElapsed}}</div> -->
-<ng-audio-recorder id="mainAudio" audio-model="recorded" onsort="saveFile()" show-player="false" time-limit="timeLimit">
-    <div ng-if="recorder.isAvailable">
-
-        <div ng-if="recorder.status.isDenied === true" style="color: red;">
-            You need to grant permission for this application to USE your microphone.
-        </div>
-        <button ng-click="recorder.startRecord()" type="button"
-                ng-disabled="recorder.status.isDenied === true || recorder.status.isRecording">
-            Start Record
-        </button>
-        <a ng-click="recorder.saveFile()">Save</a>
-        <button ng-click="recorder.stopRecord()" type="button" ng-disabled="recorder.status.isRecording === false">
-            Stop Record
-        </button>
-
-        <button ng-click="recorder.status.isPlaying ? recorder.playbackPause() : recorder.playbackResume()"
-                type="button" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
-            {{recorder.status.isStopped || recorder.status.isPaused ? 'Play' : 'Pause'}}
-        </button>
-
-        <button ng-click="recorder.save()" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
-            Download
-        </button>
-
-        <div style="max-width: 600px">
-            <div ng-show="recorder.status.isConverting">
-                Please wait while your recording is processed.
-            </div>
-
-            <div ng-show="recorder.isHtml5 && recorder.status.isRecording">
-                <ng-audio-recorder-analyzer></ng-audio-recorder-analyzer>
-            </div>
-            <br/>
-
-            <div ng-show="!recorder.status.isRecording && recorder.audioModel">
-                <ng-audio-recorder-wave-view wave-color="yellow" bar-color="red"></ng-audio-recorder-wave-view>
-            </div>
-        </div>
-
-        <h2 style="font-family: sans-serif; text-align: center; width: 60px; border-radius: 20px;
-    border: solid 2px #333; padding: 20px 10px;" ng-if="recorder.status.isRecording">
-            {{recorder.elapsedTime > 9 ? recorder.elapsedTime : ('0'+recorder.elapsedTime)}}
-        </h2>
-
-
-        <h2 style="font-family: sans-serif; text-align: center; border: solid 2px #333; padding: 20px 10px;"
-            ng-if="recorder.status.isRecording">
-            Remaining Time: {{recorder.timeLimit - recorder.elapsedTime}}
-        </h2>
-    </div>
-
-
-    <div ng-if="!recorder.isAvailable">
-        Your browser does not support this feature natively, please use latest version of <a
-            href="https://www.google.com/chrome/browser" target="_blank">Google Chrome</a> or <a
-            href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Mozilla Firefox</a>. If you're on
-        Safari or Internet Explorer, you can install <a href="https://get.adobe.com/flashplayer/">Adobe Flash</a> to
-        use this feature.
-    </div>
-
-</ng-audio-recorder>
-
-
-  <nav>
+<section class="md-whiteframe-10dp"  layout="column" flex="80" flex-offset="10" ng-controller='playController as play'>
 
   <div class="singers">
     <img src="img/soprano.png">
@@ -88,49 +8,115 @@
     
     <img src="img/baritone.png">
   </div>  
-
-  <span>
-  <rzslider class="fader" rz-slider-model="ch1.value" rz-slider-options="ch1.options"></rzslider>
-  <rzslider class="fader" rz-slider-model="ch2.value" rz-slider-options="ch1.options"></rzslider>
-  <rzslider class="fader" rz-slider-model="ch3.value" rz-slider-options="ch1.options"></rzslider>
-  </span>
-
+  <nav>
+    <span>
+      <rzslider class="fader" rz-slider-model="ch1.value" rz-slider-options="ch1.options"></rzslider>
+      <rzslider class="fader" rz-slider-model="ch2.value" rz-slider-options="ch1.options"></rzslider>
+      <rzslider class="fader" rz-slider-model="ch3.value" rz-slider-options="ch1.options"></rzslider>
+    </span>
   </nav>
 
+  <span>
+    <a href="#" data-ng-click="play.recSound()"><i class="material-icons">fiber_manual_record</i></a>
+    <a href="#" data-ng-click="play.playSound()"><i class="material-icons">play_arrow</i></a>
+    <a href="#" data-ng-click="play.stopSound()"><i class="material-icons">stop</i></a>  
+  </span>
+
+  <ng-audio-recorder id="mainAudio" audio-model="recorded" onsort="saveFile()" show-player="false">
+
+    <div id="wave" ng-show="recorder.isHtml5 && recorder.status.isRecording">
+      <ng-audio-recorder-analyzer></ng-audio-recorder-analyzer>
+    </div>
+    <div ng-if="recorder.isAvailable">
+
+      <div ng-if="recorder.status.isDenied === true" style="color: red;">
+        You need to grant permission for this application to USE your microphone.
+      </div>
+      <!--     <button ng-click="recorder.startRecord()" type="button"
+                  ng-disabled="recorder.status.isDenied === true || recorder.status.isRecording">
+              Start
+            </button> -->
+            <a ng-click="recorder.saveFile()">Save</a>
+   <!--        <button ng-click="recorder.stopRecord()" type="button" ng-disabled="recorder.status.isRecording === false">
+              Stop
+            </button> -->
+<!-- 
+          <button ng-click="recorder.status.isPlaying ? recorder.playbackPause() : recorder.playbackResume()"
+                  type="button" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+              {{recorder.status.isStopped || recorder.status.isPaused ? 'Play' : 'Pause'}}
+          </button>
+        -->
+        <a ng-click="recorder.save()" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+          Download
+        </a>
+
+        <div style="max-width: 600px">
+          <div ng-show="recorder.status.isConverting">
+            Please wait while your recording is processed.
+          </div>
+
+          <br/>
+
+        </div>
+
+      </div>
 
 
-<div class="track-label">
+      <div ng-if="!recorder.isAvailable">
+        Your browser does not support this feature natively, please use latest version of <a
+        href="https://www.google.com/chrome/browser" target="_blank">Google Chrome</a> or <a
+        href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Mozilla Firefox</a>. If you're on
+        Safari or Internet Explorer, you can install <a href="https://get.adobe.com/flashplayer/">Adobe Flash</a> to
+        use this feature.
+      </div>
 
-<md-button class="md-primary dropdown" ng-Mouseenter="soprano=!soprano" ng-Mouseleave="soprano=!soprano" ng-class="{active:soprano}">
-  Soprano
-  <ul class="dropdown-menu md-whiteframe-z1">
-    <li><md-button ng-click="play.select('soprano', 'clip1')">One</md-button></li>
-    <li><md-button ng-click="play.select('soprano', 'clip2')">Two</md-button></li>
-  </ul>
-</md-button>
+    </ng-audio-recorder>
 
-<md-button class="md-primary dropdown" ng-Mouseenter="alto=!alto" ng-Mouseleave="alto=!alto" ng-class="{active:alto}">
-  Alto
-  <ul class="dropdown-menu md-whiteframe-z1">
-    <li><md-button ng-click="play.select('alto', 'clip3')">One</md-button></li>
-    <li><md-button ng-click="play.select('alto', 'clip4')">Two</md-button></li>
-  </ul>
-</md-button>
+    <ul>
+      <li ng-repeat="clip in play.songs">Yo</li>
+    </ul>
 
-<md-button class="md-primary dropdown" ng-Mouseenter="tenor=!tenor" ng-Mouseleave="tenor=!tenor" ng-class="{active:tenor}">
-  Baritone
-  <ul class="dropdown-menu md-whiteframe-z1">
-    <li><md-button ng-click="play.select('tenor', 'clip7')">One</md-button></li>
-    <li><md-button ng-click="play.select('tenor', 'clip8')">Two</md-button></li>
-  </ul>
-</md-button>
-
-</div>
-
- <audio myaudio id="clip1" class="stem soprano" src="music/soualle_soprano.mp3" preload="none" autobuffer></audio> 
- <audio  id="clip2" class="stem soprano" src="music/soualle_alto.mp3"  preload="none" autobuffer></audio> 
- <audio id="clip3" class="stem baritone" src="music/soualle_baritone.mp3"  preload="none" autobuffer></audio> 
+    <img id='sheet' src={{play.sheetsource}}>
 
 
-</section>
+
+
+
+
+
+
+    <div class="track-label">
+
+      <!-- <md-button class="md-primary dropdown" ng-Mouseenter="soprano=!soprano" ng-Mouseleave="soprano=!soprano" ng-class="{active:soprano}">
+        Soprano
+        <ul class="dropdown-menu md-whiteframe-z1">
+          <li><md-button ng-click="play.select('soprano', 'clip1')">One</md-button></li>
+          <li><md-button ng-click="play.select('soprano', 'clip2')">Two</md-button></li>
+        </ul>
+      </md-button>
+
+      <md-button class="md-primary dropdown" ng-Mouseenter="alto=!alto" ng-Mouseleave="alto=!alto" ng-class="{active:alto}">
+        Alto
+        <ul class="dropdown-menu md-whiteframe-z1">
+          <li><md-button ng-click="play.select('alto', 'clip3')">One</md-button></li>
+          <li><md-button ng-click="play.select('alto', 'clip4')">Two</md-button></li>
+        </ul>
+      </md-button>
+
+      <md-button class="md-primary dropdown" ng-Mouseenter="tenor=!tenor" ng-Mouseleave="tenor=!tenor" ng-class="{active:tenor}">
+        Baritone
+        <ul class="dropdown-menu md-whiteframe-z1">
+          <li><md-button ng-click="play.select('tenor', 'clip7')">One</md-button></li>
+          <li><md-button ng-click="play.select('tenor', 'clip8')">Two</md-button></li>
+        </ul>
+      </md-button> -->
+
+    </div>
+
+    <audio myaudio id="clip1" class="stem soprano" src="music/soualle_soprano.mp3" preload="none" autobuffer></audio> 
+    <audio  id="clip2" class="stem soprano" src="music/soualle_alto.mp3"  preload="none" autobuffer></audio> 
+    <audio id="clip3" class="stem baritone" src="music/soualle_baritone.mp3"  preload="none" autobuffer></audio> 
+
+
+  </section>
 

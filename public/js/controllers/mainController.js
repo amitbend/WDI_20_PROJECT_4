@@ -9,6 +9,13 @@ function mainController($state, $location, CurrentUser){
  
  var self           = this;
  self.currentUser   = null;
+ var originatorEv;
+ 
+ 
+ this.openMenu = function($mdOpenMenu, ev) {
+   originatorEv = ev;
+   $mdOpenMenu(ev);
+ };
 
   this.checkLoggedIn = function() {
   self.currentUser = CurrentUser.getUser();
@@ -20,7 +27,6 @@ function mainController($state, $location, CurrentUser){
    CurrentUser.clearUser();
    
  }
-
 
 
 
