@@ -47,11 +47,22 @@
 
 
              </ng-audio-recorder>
-         <span>
+         <span ng-show="false">
          <img id="soprano" class="profile" src="img/soprano.png">
          <img id="alto" class="profile" src="img/alto.png">
          <img id="baritone" class="profile" src="img/baritone.png">
          </span>
+
+    <span ng-show="true">
+      <div ng-repeat="clip in play.sopranos">
+      <p>test</p>
+      <img class="playchoir" src="https://s3-eu-west-1.amazonaws.com/viktor-wdi20/{{clip.singer}}">
+<!--       <img class="profile" src="https://s3-eu-west-1.amazonaws.com/viktor-wdi20/{{clip.singer.local.image}}"> -->
+  <!--     <audio class="stem" src="{{clip.file}}}"  preload="none" autobuffer></audio>  -->
+
+      </div>
+    </span>
+
          <span>
          <i class="material-icons">arrow_backward</i>
          <i class="material-icons">arrow_forward</i>

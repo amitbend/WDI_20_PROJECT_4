@@ -8,6 +8,7 @@ var clipSchema = mongoose.Schema({
 var channelSchema = mongoose.Schema({
   type: String,
   avatar: String,
+  file: String,
   clips: [clipSchema]
 })
 

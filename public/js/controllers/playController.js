@@ -38,11 +38,19 @@ function playController($scope, CurrentUser, Upload, appService , recorderServic
 console.log(CurrentUser.getUser())
   self.selectedSong = appService.selectedSong;
   self.newClip      = null;
+  self.sopranos     = [];
+  self.altos        = [];
+  self.baritones    = [];
+  // self.singers      = [];
 
 console.log(appService.selectedVoice);
+console.log(appService.selectedSong)
+console.log(self.user.local)
+
 
 
 // <img src="https://s3-eu-west-1.amazonaws.com/viktor-wdi20/{{play.user.local.image}}">
+
 
 
 
@@ -59,6 +67,9 @@ console.log(appService.selectedVoice);
 
   $scope.ch2 = {value: 10};
   $scope.ch3 = {value: 10};
+
+
+
   $scope.$watch('timeElapsed', function() {
 
        if(document.getElementById('clip1').currentTime > 8.5) {
@@ -135,20 +146,22 @@ console.log(appService.selectedVoice);
     console.log(self.selectedSong.channels)
       var result = self.selectedSong.channels.filter(function(channel) {
                   return channel.type == "soprano";});
-      console.log("MOFO RESULT");
-      console.log(result);
-      result[0].clips.push({singer: CurrentUser.getUser(), file: res.data.filename})
+      result[0].clips.push({singer: self.user.local.image, file: res.data.filename})
       Song.update({ id:self.selectedSong._id }, {song: self.selectedSong}, function(){
         
       });
-
-
-
-
     })
     .catch(function(err) {
       console.error(err);
     });
+  }
+
+  function getVoices() {
+    var result = self.selectedSong.channels.filter(function(channel) {
+                return channel.type == "soprano";});
+    self.sopranos = result[0].clips;
+    console.log(self.sopranos)
+
   }
 
   self.selectVoice = function(voice) {
@@ -176,6 +189,9 @@ console.log(appService.selectedVoice);
     });
   }
 
+getVoices();
+
+console.log("IIIII" + self.selectedSong)
 
 }
 

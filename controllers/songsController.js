@@ -5,7 +5,7 @@ var jwt      = require('jsonwebtoken');
 
 
 function songsIndex(req, res){
-  Song.find({}, function(err, songs) {
+  Song.find({}).exec(function(err, songs) {
     if (err) return res.status(404).send(err);
     res.status(200).send(songs);
   });
