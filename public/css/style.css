@@ -203,6 +203,7 @@ md-card {
 
 .playchoir {
   width: 40px;
+  display: inline;
 }
 
 #wave {

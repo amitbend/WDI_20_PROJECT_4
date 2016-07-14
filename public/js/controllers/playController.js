@@ -24,8 +24,8 @@ angular
     });
 
 
-playController.$inject = ['$scope', 'CurrentUser', 'Upload', 'appService' , 'recorderService', 'Song'];
-function playController($scope, CurrentUser, Upload, appService , recorderService, Song) {
+playController.$inject = ['$scope', 'CurrentUser', 'Upload', 'appService' , 'recorderService', 'Song', '$sce'];
+function playController($scope, CurrentUser, Upload, appService , recorderService, Song, $sce) {
   var self          = this;
   self.playSound    = playSound;
   self.stopSound    = stopSound;
@@ -187,6 +187,25 @@ console.log(self.user.local)
       self.all = data;
       console.log = data;
     });
+  }
+
+  self.getAudioSrc = function(id) {
+    return $sce.trustAsResourceUrl("https://s3-eu-west-1.amazonaws.com/viktor-wdi20/" + id)
+  }
+
+  self.muteVoice = function(id) {
+    console.log("muting voice")
+    var clip = document.getElementById(id.toString());
+    console.log(clip.muted)
+    if (clip.muted) {
+    document.getElementById(id.toString()).muted = false;
+    document.getElementById("img" + id.toString()).style.opacity = 1;
+
+    } else {
+    document.getElementById(id.toString()).muted = true; 
+    document.getElementById("img" + id.toString()).style.opacity = 0.2;
+    }
+
   }
 
 getVoices();

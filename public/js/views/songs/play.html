@@ -54,12 +54,12 @@
          </span>
 
     <span ng-show="true">
-      <div ng-repeat="clip in play.sopranos">
-      <p>test</p>
-      <img class="playchoir" src="https://s3-eu-west-1.amazonaws.com/viktor-wdi20/{{clip.singer}}">
+      <div ng-repeat="clip in play.sopranos track by $index">
+      <span>
+      <img id="img{{$index}}" class="playchoir" src="https://s3-eu-west-1.amazonaws.com/viktor-wdi20/{{clip.singer}}" ng-click=play.muteVoice($index)>
 <!--       <img class="profile" src="https://s3-eu-west-1.amazonaws.com/viktor-wdi20/{{clip.singer.local.image}}"> -->
-  <!--     <audio class="stem" src="{{clip.file}}}"  preload="none" autobuffer></audio>  -->
-
+      <audio id="{{$index}}" class="stem" ng-src="{{play.getAudioSrc(clip.file)}}" preload="none" autobuffer></audio> 
+      </span>
       </div>
     </span>
 
