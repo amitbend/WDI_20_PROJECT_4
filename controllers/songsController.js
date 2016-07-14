@@ -5,10 +5,26 @@ var jwt      = require('jsonwebtoken');
 
 
 function songsIndex(req, res){
-  Song.find({}).exec(function(err, songs) {
+  Song.find({})
+  .populate('channels.clips.singer').exec(function(err, songs) {
     if (err) return res.status(404).send(err);
     res.status(200).send(songs);
   });
+}
+
+function songsShow(req, res) {
+
+  Song.findById(req.params.id)
+  .populate('channels.clips.singer').exec(function(err, song){
+
+      if(err) return res.status(500).send(err);
+
+      if(!song) return res.status(404).send();
+
+      res.send(song);
+
+  });
+
 }
 
 function songsCreate(req, res){
@@ -51,5 +67,6 @@ module.exports = {
   songsIndex:  songsIndex,
   songsCreate: songsCreate,
   songsUpdate: songsUpdate,
-  songsDelete: songsDelete
+  songsDelete: songsDelete,
+  songsShow: songsShow
 };

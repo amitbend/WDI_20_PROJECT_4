@@ -35,7 +35,8 @@ function playController($scope, CurrentUser, Upload, appService , recorderServic
   self.sheetsource  = "https://s3-eu-west-1.amazonaws.com/viktor-wdi20/48d30ed89ca9e0ba5fd32c81c8a491d1"
   self.songs        = null;
   self.user         = CurrentUser.getUser();
-console.log(CurrentUser.getUser())
+
+  // self.selectedSong = localStorage.getItem("selectedSong");
   self.selectedSong = appService.selectedSong;
   self.newClip      = null;
   self.sopranos     = [];
@@ -43,9 +44,11 @@ console.log(CurrentUser.getUser())
   self.baritones    = [];
   // self.singers      = [];
 
-console.log(appService.selectedVoice);
-console.log(appService.selectedSong)
-console.log(self.user.local)
+console.log("proper");
+var item = localStorage.getItem("selectedSong");
+self.str = JSON.stringify(item);
+console.log(self.str)
+
 
 
 
@@ -136,17 +139,18 @@ console.log(self.user.local)
       data: { file: recordedFile }
     })
     .then(function(res) {
-      console.log("Success!");
-      console.log("File name");
-      console.log(res.data.filename);
-      console.log(self.selectedSong._id)
+      // console.log("Success!");
+      // console.log("File name");
+      // console.log(res.data.filename);
+      // console.log(self.selectedSong._id)
       // var song = Song.get({title: "rr"}, function(data){
 
       //   console.log(data)}); 
-    console.log(self.selectedSong.channels)
+    // console.log(self.selectedSong.channels)
       var result = self.selectedSong.channels.filter(function(channel) {
                   return channel.type == "soprano";});
-      result[0].clips.push({singer: self.user.local.image, file: res.data.filename})
+      result[0].clips.push({singer: self.user, file: res.data.filename});
+      
       Song.update({ id:self.selectedSong._id }, {song: self.selectedSong}, function(){
         
       });
@@ -157,10 +161,14 @@ console.log(self.user.local)
   }
 
   function getVoices() {
-    var result = self.selectedSong.channels.filter(function(channel) {
-                return channel.type == "soprano";});
-    self.sopranos = result[0].clips;
-    console.log(self.sopranos)
+
+    // if(self.selectedSong.channels) {
+    //   console.log("GETTING VOICES");
+    //   var result = self.selectedSong.channels.filter(function(channel) {
+    //               return channel.type == "soprano";});
+    //   self.sopranos = result[0].clips;
+    //   // console.log(self.sopranos)
+    // }
 
   }
 
@@ -208,9 +216,10 @@ console.log(self.user.local)
 
   }
 
-getVoices();
+  // console.log("IIIII" + self.selectedSong)
+  // console.log(self.selectedSong.channels)
 
-console.log("IIIII" + self.selectedSong)
+
 
 }
 

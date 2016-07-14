@@ -24,6 +24,7 @@ router.route('/songs')
   .post(songsController.songsCreate);
 
 router.route('/songs/:id')
+  .get(songsController.songsShow)
   .put(songsController.songsUpdate)
   .delete(songsController.songsDelete);
 

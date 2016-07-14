@@ -8,7 +8,7 @@ function Song($resource){
 
   return $resource(
     'http://localhost:3000/songs/:id', {id: '@id'},
-    { 'get':       { method: 'GET', isArray: true},
+    { 'get':       { method: 'GET', isArray: false},
       'save':      { method: 'POST' },
       'update':    { method:'PUT' },
       'query':     { method: 'GET', isArray: true},

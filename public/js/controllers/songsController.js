@@ -2,9 +2,9 @@ angular
   .module('choir')
   .controller('songsController', songsController)
 
-songsController.$inject = ['$scope', 'Song', '$state', '$location', 'CurrentUser', 'appService'];
+songsController.$inject = ['$scope', 'Song', '$state', '$location', 'CurrentUser', 'appService', 'Upload'];
 
-function songsController($scope, Song, $state, $location, CurrentUser, appService){
+function songsController($scope, Song, $state, $location, CurrentUser, appService, Upload){
 
   var self          = this;
   $scope.newSong = {};
@@ -14,6 +14,7 @@ function songsController($scope, Song, $state, $location, CurrentUser, appServic
   self.getSongs     = getSongs;
   self.selectSong   = selectSong;
   self.selectedSong = appService.selectedSong
+  self.file = null;
 console.log(appService.selectedSong)
 
   
@@ -67,25 +68,45 @@ this.addSong = function(){
     console.log('adding channel');
     switch(type) {
         case "soprano":
-            document.getElementById("choiceSoprano").style.opacity = 0.2;
+            document.getElementById("choiceSoprano").style.opacity = 1;
             $scope.newSong.channels.push({type: "soprano", avatar:"img/soprano.png"})
             break;
         case "alto":
-            document.getElementById("choiceAlto").style.opacity = 0.2;
+            document.getElementById("choiceAlto").style.opacity = 1;
             $scope.newSong.channels.push({type: "alto", avatar:"img/alto.png"})
             break;
         case "baritone":
-            document.getElementById("choiceBaritone").style.opacity = 0.2;
+            document.getElementById("choiceBaritone").style.opacity = 1;
             $scope.newSong.channels.push({type: "baritone", avatar:"img/baritone.png"})
             break;
     }
    }
 
-
-
   function selectSong(song){
-    appService.selectedSong = song;
+
+
+      localStorage.setItem("song_id", song._id);
+      appService.selectedSong = song;
+
     }
 
+
+ self.uploadSingle = function() {
+
+   Upload.upload({
+     url: 'http://localhost:3000/upload/single',
+     data: { file: self.file }
+   })
+   .then(function(res) {
+     console.log("Success!");
+     console.log("File name");
+     console.log(res.data.filename);
+     $scope.newSong.score = res.data.filename;
+     console.log(res);
+   })
+   .catch(function(err) {
+     console.error(err);
+   });
+ }
 
 }

@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Slackey');
+@import url('https://fonts.googleapis.com/css?family=Slackey');
+
+
 html {
   font-family: 'Source Sans Pro', sans-serif;
   text-align: center;
@@ -8,6 +12,13 @@ main {
   background-repeat: no-repeat;
      background-attachment: fixed;
      background-position: center; 
+}
+
+.wrapper {
+  background-color: white;
+  border-radius: 30px;
+  margin-top: 40px;
+  height: 100vh;
 }
 
 header h2{
@@ -99,8 +110,10 @@ audio {
 
 .fader {
   width: 150px;
+}
 
-
+#choiceSoprano, #choiceAlto, #choiceBaritone {
+  opacity: 0.5;
 }
 
 .songcard {
@@ -122,7 +135,9 @@ audio {
 form .progress {
     line-height: 15px;
 }
-}
+
+
+
 
 .progress {
     display: inline-block;
@@ -201,8 +216,14 @@ md-card {
 
 }
 
+#choir-card {
+  display: inline-block;
+  text-align: left;
+}
+
 .playchoir {
-  width: 40px;
+  text-align: left;
+  width: 100px;
   display: inline;
 }
 

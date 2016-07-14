@@ -1,5 +1,4 @@
-
-<md-content ng-controller="usersController as users" flex id="content">
+<div class='wrapper' flex-offset="20" flex="60" ng-controller="usersController as users" class="md-whiteframe-15dp display">
 
   <section layout="column" flex="60" flex-offset="20">
   <h2 class="md-display-3">Register</h2>
@@ -43,11 +42,7 @@
         <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" placeholder="Password Confirmation" ng-model="users.user.passwordConfirmation" required>
       </md-input-container>
 
-
-          <input type="file"ngf-select ng-model="users.file" name="file">Select File</div>
-          <p ng-click="users.uploadSingle()">Upload</p>
-        
-
+    
 
       <div class="alert alert-danger" role="alert" ng-messages="users.registerForm['passwordConfirmation'].$error" ng-show="(users.registerForm.$submitted && users.registerForm['passwordConfirmation'].$invalid)">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -56,8 +51,17 @@
       </div>
 
       <md-button type="submit" class="md-raised">Submit</md-button>
+      <div>
+      <input class="md-raised" id='file-upload' type="file"ngf-select ng-model="users.file" name="file"></div>
+      <p class="md-raised" ng-click="users.uploadSingle()">Upload</p>
+      </div>
     </form>
+
+
+
+
+
 
   </section>
 
-</md-content>
+</div>
