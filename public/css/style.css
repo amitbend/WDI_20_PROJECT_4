@@ -7,18 +7,56 @@ html {
   text-align: center;
 }
 
+body {
+  background-image: url("../img/ye.jpg");
+}
+
+.icon {
+  width: 40px;
+}
+
 main {
   background-image: url("../img/ye.jpg");
-  background-repeat: no-repeat;
-     background-attachment: fixed;
+    /* background-attachment: fixed;*/
      background-position: center; 
+     background-size: cover;
+     background-repeat: no-repeat; 
+}
+
+.userlist {
+  margin-right: 20px;
+  width: 80px;
+  border-radius: 50px;
 }
 
 .wrapper {
   background-color: white;
   border-radius: 30px;
   margin-top: 40px;
+  margin-bottom: 100px;
+  padding-top: 20px;
   height: 100vh;
+}
+
+.searchbox {
+  font-size: 25px;
+  margin: 30px 0px;
+}
+
+
+.control-panel {
+  opacity: 0.9;
+  background-color: white;
+  width: 50%;
+  padding: 10px;
+  margin: 25px auto;
+  border-radius: 30px;
+}
+
+header {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  background-color: white;
 }
 
 header h2{
@@ -108,9 +146,6 @@ audio {
     margin: 0px auto;
 }
 
-.fader {
-  width: 150px;
-}
 
 #choiceSoprano, #choiceAlto, #choiceBaritone {
   opacity: 0.5;
@@ -166,12 +201,18 @@ md-icon {
 
 .singers {
   margin: 0 auto;
+  margin-bottom: 10px;
 }
 
 .singers img {
-  width: 150px;
+  width: 90px;
   display: inline-block;
 }
+
+.fader {
+  width: 90px;
+}
+
 
 .singer {
   width:22%;
@@ -199,13 +240,13 @@ nav img {
 }
 
 .profile {
-  width: 80px;
+  width: 60px;
   display: inline;
 }
 
 #mainAudio button {
   text-align: center;
-  width: 80px;
+  width: 60px;
   color: purple;
 }
 
@@ -216,20 +257,37 @@ md-card {
 
 }
 
-#choir-card {
+.choir-card {
   display: inline-block;
   text-align: left;
 }
 
+.choir-item {
+  display: inline;
+}
+
 .playchoir {
   text-align: left;
-  width: 100px;
+  margin: 5px;
+  width: 80px;
   display: inline;
+}
+
+#register {
+  padding: 15px;
+}
+
+.md-icon-button {
+  height: 90px;
 }
 
 #wave {
   border: 1px solid black;
   position: absolute;
+}
+
+.md-menu {
+  line-height: 94px;
 }
 
 .menudemoMenuPositionModes .md-menu-demo {
@@ -242,4 +300,21 @@ md-card {
   top:0;
   right: 0;
   width: 80px;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
 }

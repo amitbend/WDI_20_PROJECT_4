@@ -1,91 +1,65 @@
 
 <section layout="column" flex="80" flex-offset="10" ng-controller='playController as play'>
-  <md-card md-theme="default" md-theme-watch>
-   <md-card-title>
-     <md-card-title-text> 
-       <span>
-         <md-button data-ng-click="play.saveSound()">Save</md-button>
-         <md-button data-ng-click="play.recSound()">Download</md-button>
-       </span>
-       <span>
-         <a href="#" data-ng-click="play.recSound()"><i class="material-icons">fiber_manual_record</i></a>
-         <a href="#" data-ng-click="play.playSound()"><i class="material-icons">play_arrow</i></a>
-         <a href="#" data-ng-click="play.stopSound()"><i class="material-icons">stop</i></a>  
-       </span>
+  <div class="control-panel" md-theme="default" md-theme-watch>
 
-       <ng-audio-recorder id="mainAudio" audio-model="recorded" onsort="saveFile()" show-player="false">
+   <span>
+   <a href="#" data-ng-click="play.recSound()"><img class="icon" src="img/rec.png"></a>
+     <a href="#" data-ng-click="play.playSound()"><img class="icon" src="img/play.png"></a>
+     <a href="#" data-ng-click="play.stopSound()"><img class="icon" src="img/stop.png"></a>  
+     <md-button data-ng-click="play.saveSound()">Save</md-button>
+   </span>
 
-         <div id="wave" ng-show="recorder.isHtml5 && recorder.status.isRecording">
-           <ng-audio-recorder-analyzer></ng-audio-recorder-analyzer>
-         </div>
-         <div ng-if="recorder.isAvailable">
+   <ng-audio-recorder id="mainAudio" audio-model="recorded" onsort="saveFile()" show-player="false">
 
-           <div ng-if="recorder.status.isDenied === true" style="color: red;">
-             You need to grant permission for this application to USE your microphone.
-           </div>
-               <!--     <button ng-click="recorder.startRecord()" type="button"
-                           ng-disabled="recorder.status.isDenied === true || recorder.status.isRecording">
-                       Start
-                     </button> -->
-                     <a ng-click="recorder.saveFile()">Save</a>
-            <!--        <button ng-click="recorder.stopRecord()" type="button" ng-disabled="recorder.status.isRecording === false">
-                       Stop
-                     </button> -->
-         <!-- 
-                   <button ng-click="recorder.status.isPlaying ? recorder.playbackPause() : recorder.playbackResume()"
-                           type="button" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
-                       {{recorder.status.isStopped || recorder.status.isPaused ? 'Play' : 'Pause'}}
-                   </button>
-                 -->
-                 <a ng-click="recorder.save()" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
-                   Download
-                 </a>
+     <div id="wave" ng-show="recorder.isHtml5 && recorder.status.isRecording">
+       <ng-audio-recorder-analyzer></ng-audio-recorder-analyzer>
+     </div>
+     <div ng-if="recorder.isAvailable">
 
+       <div ng-if="recorder.status.isDenied === true" style="color: red;">
+         You need to grant permission for this application to USE your microphone.
+       </div>
+     </div>
 
-               </div>
+   </ng-audio-recorder>
 
+   <span ng-show="true">
+    <div ng-repeat="channel in play.selectedSong.channels">
+      <div class='choir-card' ng-repeat="clip in channel.clips track by $index">
 
+        <img id="img{{$index}}" class="playchoir" src="https://s3-eu-west-1.amazonaws.com/viktor-wdi20/{{clip.singer.local.image}}" ng-click=play.muteVoice($index)>
 
-             </ng-audio-recorder>
-             <span ng-show="true">
-               <img id="soprano" class="profile" src="img/soprano.png">
-               <img id="alto" class="profile" src="img/alto.png">
-               <img id="baritone" class="profile" src="img/baritone.png">
-             </span>
+        <audio id="{{$index}}" class="stem" ng-src="{{play.getAudioSrc(clip.file)}}" preload="none" autobuffer></audio> 
+        
+      </div>
+    </div>
+  </span>
 
-             <span ng-show="true">
-              <div ng-repeat="channel in play.selectedSong.channels">
-                <div id='choir-card' ng-repeat="clip in channel.clips track by $index">
-                  <span>
-                  <img id="img{{$index}}" class="playchoir" src="https://s3-eu-west-1.amazonaws.com/viktor-wdi20/{{clip.singer.local.image}}" ng-click=play.muteVoice($index)>
-                    <!--       <img class="profile" src="https://s3-eu-west-1.amazonaws.com/viktor-wdi20/{{clip.singer.local.image}}"> -->
-                    <audio id="{{$index}}" class="stem" ng-src="{{play.getAudioSrc(clip.file)}}" preload="none" autobuffer></audio> 
-                  </span>
-                </div>
-              </div>
-            </span>
-
-            <span>
-             <rzslider class="fader" rz-slider-model="ch1.value" rz-slider-options="ch1.options"></rzslider>
-             <rzslider class="fader" rz-slider-model="ch2.value" rz-slider-options="ch1.options"></rzslider>
-             <rzslider class="fader" rz-slider-model="ch3.value" rz-slider-options="ch1.options"></rzslider>
-           </span>
+  <div class="singers">
+    <span ng-show="true">
+      <img id="soprano" class="profile" src="img/soprano.png">
+      <img id="alto" class="profile" src="img/alto.png">
+      <img id="baritone" class="profile" src="img/baritone.png">
+    </span>
+  </div>
+  <div class="singers">
+    <span>
+     <rzslider class="fader" rz-slider-model="ch1.value" rz-slider-options="ch1.options"></rzslider>
+     <rzslider class="fader" rz-slider-model="ch2.value" rz-slider-options="ch1.options"></rzslider>
+     <rzslider class="fader" rz-slider-model="ch3.value" rz-slider-options="ch1.options"></rzslider>
+   </span>
+ </div>
 
 
-
-         </md-card-title-text>
-
-       </md-card-title>
-
-     </md-card>
+</div>
 
 
-     <img id='sheet' src={{play.sheetsource}}>
+<img id='sheet' src={{play.sheetsource}}>
 
-     <audio myaudio id="clip1" class="stem soprano" src="music/soualle_soprano.mp3" preload="none" autobuffer></audio> 
-     <audio  id="clip2" class="stem soprano" src="music/soualle_alto.mp3"  preload="none" autobuffer></audio> 
-     <audio id="clip3" class="stem baritone" src="music/soualle_baritone.mp3"  preload="none" autobuffer></audio> 
+<audio myaudio id="clip1" class="stem soprano" src="music/soualle_soprano.mp3" preload="none" autobuffer></audio> 
+<audio  id="clip2" class="stem soprano" src="music/soualle_alto.mp3"  preload="none" autobuffer></audio> 
+<audio id="clip3" class="stem baritone" src="music/soualle_baritone.mp3"  preload="none" autobuffer></audio> 
 
 
-   </section>
+</section>
 

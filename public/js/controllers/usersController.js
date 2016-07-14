@@ -28,6 +28,7 @@ console.log(self.currentUser);
   function getUsers() {
     User.query(function(data){
       self.all = data;
+      console.log(data)
     });
   }
 

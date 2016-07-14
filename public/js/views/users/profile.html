@@ -1,9 +1,8 @@
-
-<section ng-controller="usersController as users" layout="column" flex="60" flex-offset="20">
+<div class='wrapper' flex-offset="20" flex="60" ng-controller='usersController as users' class="md-whiteframe-15dp display">
 <h2 class="md-display-3">User Show</h2>
-<md-divider></md-divider>
+
   <div id="users">
-    <ul class="md-whiteframe-15dp">
+    <ul>
       <li class='user-tile'>
         <h2>{{users.currentUser.local.name}}</h2> 
         <img src="https://s3-eu-west-1.amazonaws.com/viktor-wdi20/{{users.currentUser.local.image}}">
@@ -14,7 +13,7 @@
     </ul>
   </div>
 
-  <div id="users" flex-offset="20" flex="60" ng-controller='songsController as songs' class="md-whiteframe-15dp display">
+  <div id="users" flex-offset="20" flex="60" ng-controller='songsController as songs'>
   <h2 class="md-display-3">My songs</h2>
   <h3>{{users.CurrentUser.email}}</h3>
   <input type="text" ng-model="searchBox">
@@ -38,4 +37,4 @@
     </md-content>
   </div>
 
-</section>
+</div>
