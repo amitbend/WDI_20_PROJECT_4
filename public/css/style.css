@@ -4,10 +4,16 @@ html {
 }
 
 main {
-/*  background-image: url("../img/funky.jpg");*/
+  background-image: url("../img/ye.jpg");
   background-repeat: no-repeat;
      background-attachment: fixed;
      background-position: center; 
+}
+
+header h2{
+  font-family: 'Slackey', cursive;
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
 
 md-toolbar {
@@ -101,7 +107,7 @@ audio {
   background-color: #FFFFA5;
   display: inline-block;
   margin: 30px;
-  height: 150px; }
+  height: 110px; }
 
 /*UPLOAD*/
 
@@ -138,7 +144,7 @@ md-icon {
 #sheet {
   margin: 0 auto;
   height: 80vh;
-  width: 100%;
+  width: 95%;
   border-radius: 40px;
 }
 
@@ -157,14 +163,42 @@ md-icon {
   display: inline; 
 }
 
+header {
+
+}
+
+header img {
+
+  width: 60px;
+
+}
+
 nav {
+  margin-top: 10px;
   margin: 0 auto;
   text-align: center;
 }
 
+nav img {
+  padding: 0px 30px;
+}
+
+.profile {
+  width: 80px;
+  display: inline;
+}
+
 #mainAudio button {
+  text-align: center;
   width: 80px;
   color: purple;
+}
+
+md-card {
+  margin: 40px auto;
+  width: 520px;
+  border: 1px solid black;
+
 }
 
 #wave {

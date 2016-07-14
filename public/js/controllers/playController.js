@@ -9,7 +9,7 @@ angular
               element.bind("timeupdate", function(){
                   scope.timeElapsed = element[0].currentTime;
                   scope.$apply();
-              });
+              }); 
           }
       });
 
@@ -24,8 +24,8 @@ angular
     });
 
 
-playController.$inject = ['$scope', 'CurrentUser', 'Upload', 'appService' , 'recorderService'];
-function playController($scope, CurrentUser, Upload, appService , recorderService) {
+playController.$inject = ['$scope', 'CurrentUser', 'Upload', 'appService' , 'recorderService', 'Song'];
+function playController($scope, CurrentUser, Upload, appService , recorderService, Song) {
   var self          = this;
   self.playSound    = playSound;
   self.stopSound    = stopSound;
@@ -37,8 +37,9 @@ function playController($scope, CurrentUser, Upload, appService , recorderServic
   self.user         = CurrentUser.getUser();
 console.log(CurrentUser.getUser())
   self.selectedSong = appService.selectedSong;
+  self.newClip      = null;
 
-console.log(self.selectedSong)
+console.log(appService.selectedVoice);
 
 
 // <img src="https://s3-eu-west-1.amazonaws.com/viktor-wdi20/{{play.user.local.image}}">
@@ -111,6 +112,12 @@ console.log(self.selectedSong)
     self.playicon = "av:pause";
   }
 
+  self.saveSound = function() {
+    console.log("saving song");
+    recorderService.controller("mainAudio").saveFile();
+
+  }
+
 
   $scope.uploadRec = function(recordedFile) {
     Upload.upload({
@@ -121,12 +128,45 @@ console.log(self.selectedSong)
       console.log("Success!");
       console.log("File name");
       console.log(res.data.filename);
-      console.log(res);
+      console.log(self.selectedSong._id)
+      // var song = Song.get({title: "rr"}, function(data){
+
+      //   console.log(data)}); 
+    console.log(self.selectedSong.channels)
+      var result = self.selectedSong.channels.filter(function(channel) {
+                  return channel.type == "soprano";});
+      console.log("MOFO RESULT");
+      console.log(result);
+      result[0].clips.push({singer: CurrentUser.getUser(), file: res.data.filename})
+      Song.update({ id:self.selectedSong._id }, {song: self.selectedSong}, function(){
+        
+      });
+
+
+
+
     })
     .catch(function(err) {
       console.error(err);
     });
   }
+
+  self.selectVoice = function(voice) {
+    switch(voice) {
+        case "soprano":
+            document.getElementById("soprano").style.opacity = 0.2;
+
+            break;
+        case "alto":
+            document.getElementById("alto").style.opacity = 0.2;
+            
+            break;
+        case "baritone":
+            document.getElementById("baritone").style.opacity = 0.2;
+            
+            break;
+    }
+  } 
 
 
   function getSongs(){

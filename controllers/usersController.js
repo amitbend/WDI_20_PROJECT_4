@@ -7,14 +7,7 @@ function usersIndex(req, res){
   });
 }
 
-function usersCreate(req, res){
-  var user = new User(req.body.user);
-  user.save(function(err, user) {
-    if (err) return res.status(500).send(err);
-    console.log(err)
-    res.status(201).send(user);
-  });
-}
+
 
 function usersShow(req, res){
   var id = req.params.id;
@@ -45,7 +38,6 @@ function usersDelete(req, res){
 
 module.exports = {
   usersIndex:  usersIndex,
-  usersCreate: usersCreate,
   usersShow:   usersShow,
   usersUpdate: usersUpdate,
   usersDelete: usersDelete

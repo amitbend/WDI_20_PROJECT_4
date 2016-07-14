@@ -4,10 +4,10 @@ var validator = require('validator');
 
 var userSchema = mongoose.Schema({
   local: {
-    username:     { type: String },
-    name:         { type: String },
-    image:        { type: String },
     email:        { type: String, unique: true, required: true },
+    username:     { type: String },
+    voice:        { type: String },
+    image:        { type: String },
     passwordHash: { type: String, required: true }
   },
   songs: [{ type: mongoose.Schema.ObjectId, ref: 'Song' }]

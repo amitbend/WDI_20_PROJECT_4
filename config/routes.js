@@ -21,10 +21,12 @@ router.route('/users/:id')
 
 router.route('/songs')
   .get(songsController.songsIndex)
-  .post(songsController.songsCreate)
+  .post(songsController.songsCreate);
 
 router.route('/songs/:id')
-  .delete(songsController.songsDelete)
+  .put(songsController.songsUpdate)
+  .delete(songsController.songsDelete);
+
 
 router.route
 

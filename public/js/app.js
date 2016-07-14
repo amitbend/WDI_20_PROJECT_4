@@ -51,10 +51,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       url: "/upload",
       templateUrl: "js/views/audio/upload.html"
     })
-    .state('record', {
-      url: "/record",
-      templateUrl: "js/views/audio/record.html"
-    })
+
   
   $urlRouterProvider.otherwise("/");
 }

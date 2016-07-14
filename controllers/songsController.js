@@ -29,6 +29,16 @@ function songsCreate(req, res){
   });
 }
 
+function songsUpdate(req, res){
+  var id = req.params.id;
+
+  Song.findByIdAndUpdate({ _id: id }, req.body.song, function(err, song){
+    if (err) return res.status(500).send(err);
+    if (!song) return res.status(404).send(err);
+    res.status(200).send(song);
+  });
+}
+
 function songsDelete(req, res){
   var id = req.params.id;
   Song.remove({ _id: id }, function(err) {
@@ -40,5 +50,6 @@ function songsDelete(req, res){
 module.exports = {
   songsIndex:  songsIndex,
   songsCreate: songsCreate,
+  songsUpdate: songsUpdate,
   songsDelete: songsDelete
 };

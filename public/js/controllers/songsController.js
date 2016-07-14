@@ -72,11 +72,11 @@ this.addSong = function(){
             break;
         case "alto":
             document.getElementById("choiceAlto").style.opacity = 0.2;
-            $scope.newSong.channels.push({type: "soprano", avatar:"img/alto.png"})
+            $scope.newSong.channels.push({type: "alto", avatar:"img/alto.png"})
             break;
         case "baritone":
             document.getElementById("choiceBaritone").style.opacity = 0.2;
-            $scope.newSong.channels.push({type: "soprano", avatar:"img/baritone.png"})
+            $scope.newSong.channels.push({type: "baritone", avatar:"img/baritone.png"})
             break;
     }
    }

@@ -2,8 +2,8 @@ angular
 .module('choir')
 .controller('usersController', usersController);
 
-usersController.$inject = ['User', 'TokenService', 'CurrentUser', '$state', '$location', 'Upload'];
-function usersController(User, TokenService, CurrentUser, $state, $location, Upload){
+usersController.$inject = ['User', 'TokenService', 'CurrentUser', '$state', '$location', 'Upload', 'appService'];
+function usersController(User, TokenService, CurrentUser, $state, $location, Upload, appService){
 
   var self = this;
 
@@ -19,6 +19,7 @@ function usersController(User, TokenService, CurrentUser, $state, $location, Upl
   self.checkLoggedIn = checkLoggedIn;
   self.showUser      = showUser;
   self.currentUser = CurrentUser.getUser()
+
 console.log(self.currentUser);
   self.file = null;
 
@@ -37,6 +38,8 @@ console.log(self.currentUser);
      $state.go('songs');
    }
    self.currentUser = CurrentUser.getUser();
+   console.log(CurrentUser.getUser())
+   appService.selectedVoice = self.currentUser.local.voice;
  }
 
  function handleError(e) {

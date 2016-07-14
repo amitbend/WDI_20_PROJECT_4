@@ -1,104 +1,82 @@
 
-<section class="md-whiteframe-10dp"  layout="column" flex="80" flex-offset="10" ng-controller='playController as play'>
+<section layout="column" flex="80" flex-offset="10" ng-controller='playController as play'>
+<md-card md-theme="default" md-theme-watch>
+       <md-card-title>
+         <md-card-title-text> 
+         <span>
+         <md-button data-ng-click="play.saveSound()">Save</md-button>
+         <md-button data-ng-click="play.recSound()">Download</md-button>
+         </span>
+           <span>
+             <a href="#" data-ng-click="play.recSound()"><i class="material-icons">fiber_manual_record</i></a>
+             <a href="#" data-ng-click="play.playSound()"><i class="material-icons">play_arrow</i></a>
+             <a href="#" data-ng-click="play.stopSound()"><i class="material-icons">stop</i></a>  
+           </span>
+
+           <ng-audio-recorder id="mainAudio" audio-model="recorded" onsort="saveFile()" show-player="false">
+
+             <div id="wave" ng-show="recorder.isHtml5 && recorder.status.isRecording">
+               <ng-audio-recorder-analyzer></ng-audio-recorder-analyzer>
+             </div>
+             <div ng-if="recorder.isAvailable">
+
+               <div ng-if="recorder.status.isDenied === true" style="color: red;">
+                 You need to grant permission for this application to USE your microphone.
+               </div>
+               <!--     <button ng-click="recorder.startRecord()" type="button"
+                           ng-disabled="recorder.status.isDenied === true || recorder.status.isRecording">
+                       Start
+                     </button> -->
+                     <a ng-click="recorder.saveFile()">Save</a>
+            <!--        <button ng-click="recorder.stopRecord()" type="button" ng-disabled="recorder.status.isRecording === false">
+                       Stop
+                     </button> -->
+         <!-- 
+                   <button ng-click="recorder.status.isPlaying ? recorder.playbackPause() : recorder.playbackResume()"
+                           type="button" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+                       {{recorder.status.isStopped || recorder.status.isPaused ? 'Play' : 'Pause'}}
+                   </button>
+                 -->
+                 <a ng-click="recorder.save()" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+                   Download
+                 </a>
 
 
-  <div class="singers">
-  <div class="singer">
-    <img src="img/soprano.png"> 
-  </div>
-  <div class="singer">
-    <img src="img/alto.png">
-   </div>
-   <div class="singer"> 
-    <img src="img/baritone.png">
-    </div>
-
-  </div> 
-    <div class="singers"> 
-    <div class="singer">
-    <i class="material-icons">arrow_backward</i>
-    <i class="material-icons">arrow_forward</i>
+               </div>
 
 
-    </div>
-    <div class="singer">
-    <i class="material-icons">arrow_backward</i>
-    <i class="material-icons">arrow_forward</i>
 
-    </div>
-    <div class="singer">
-    <i class="material-icons">arrow_backward</i>
-    <i class="material-icons">arrow_forward</i>
+             </ng-audio-recorder>
+         <span>
+         <img id="soprano" class="profile" src="img/soprano.png">
+         <img id="alto" class="profile" src="img/alto.png">
+         <img id="baritone" class="profile" src="img/baritone.png">
+         </span>
+         <span>
+         <i class="material-icons">arrow_backward</i>
+         <i class="material-icons">arrow_forward</i>
+         <i class="material-icons">arrow_backward</i>
+         <i class="material-icons">arrow_forward</i>
+         <i class="material-icons">arrow_backward</i>
+         <i class="material-icons">arrow_forward</i>
+         </span>
+         <span>
+         <rzslider class="fader" rz-slider-model="ch1.value" rz-slider-options="ch1.options"></rzslider>
+         <rzslider class="fader" rz-slider-model="ch2.value" rz-slider-options="ch1.options"></rzslider>
+         <rzslider class="fader" rz-slider-model="ch3.value" rz-slider-options="ch1.options"></rzslider>
+         </span>
+       
+          
 
-    </div>
-  </div>
-  <div class="singers"> 
-  <div class="singer">
-      <rzslider class="fader" rz-slider-model="ch1.value" rz-slider-options="ch1.options"></rzslider>
-  </div>
-  <div class="singer">
-      <rzslider class="fader" rz-slider-model="ch2.value" rz-slider-options="ch1.options"></rzslider>
-  </div>
-  <div class="singer">
-      <rzslider class="fader" rz-slider-model="ch3.value" rz-slider-options="ch1.options"></rzslider>
-  </div>
-</div>
+         </md-card-title-text>
+  
+       </md-card-title>
 
-  <span>
-    <a href="#" data-ng-click="play.recSound()"><i class="material-icons">fiber_manual_record</i></a>
-    <a href="#" data-ng-click="play.playSound()"><i class="material-icons">play_arrow</i></a>
-    <a href="#" data-ng-click="play.stopSound()"><i class="material-icons">stop</i></a>  
-  </span>
-
-  <ng-audio-recorder id="mainAudio" audio-model="recorded" onsort="saveFile()" show-player="false">
-
-    <div id="wave" ng-show="recorder.isHtml5 && recorder.status.isRecording">
-      <ng-audio-recorder-analyzer></ng-audio-recorder-analyzer>
-    </div>
-    <div ng-if="recorder.isAvailable">
-
-      <div ng-if="recorder.status.isDenied === true" style="color: red;">
-        You need to grant permission for this application to USE your microphone.
-      </div>
-      <!--     <button ng-click="recorder.startRecord()" type="button"
-                  ng-disabled="recorder.status.isDenied === true || recorder.status.isRecording">
-              Start
-            </button> -->
-            <a ng-click="recorder.saveFile()">Save</a>
-   <!--        <button ng-click="recorder.stopRecord()" type="button" ng-disabled="recorder.status.isRecording === false">
-              Stop
-            </button> -->
-<!-- 
-          <button ng-click="recorder.status.isPlaying ? recorder.playbackPause() : recorder.playbackResume()"
-                  type="button" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
-              {{recorder.status.isStopped || recorder.status.isPaused ? 'Play' : 'Pause'}}
-          </button>
-        -->
-        <a ng-click="recorder.save()" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
-          Download
-        </a>
-
-        <div style="max-width: 600px">
-          <div ng-show="recorder.status.isConverting">
-            Please wait while your recording is processed.
-          </div>
-
-          <br/>
-
-        </div>
-
-      </div>
+     </md-card>
 
 
-      <div ng-if="!recorder.isAvailable">
-        Your browser does not support this feature natively, please use latest version of <a
-        href="https://www.google.com/chrome/browser" target="_blank">Google Chrome</a> or <a
-        href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Mozilla Firefox</a>. If you're on
-        Safari or Internet Explorer, you can install <a href="https://get.adobe.com/flashplayer/">Adobe Flash</a> to
-        use this feature.
-      </div>
 
-    </ng-audio-recorder>
+
 
 
 
