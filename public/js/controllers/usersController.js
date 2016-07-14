@@ -59,6 +59,7 @@ function logout() {
   self.all         = [];
   self.currentUser = null;
   CurrentUser.clearUser();
+  $state.go('home');
 }
 
 function checkLoggedIn() {

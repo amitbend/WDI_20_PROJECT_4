@@ -29,7 +29,7 @@ function playController($scope, CurrentUser, Upload, appService , recorderServic
   var self          = this;
   self.playSound    = playSound;
   self.stopSound    = stopSound;
-  self.playicon     = "av:play_arrow";
+  self.playicon     = "img/play.png";
   self.house        = CurrentUser.house;
   var stems         = document.getElementsByClassName("stem");
   self.sheetsource  = "https://s3-eu-west-1.amazonaws.com/viktor-wdi20/48d30ed89ca9e0ba5fd32c81c8a491d1"
@@ -104,7 +104,7 @@ console.log(self.str)
     for (var i = stems.length - 1; i >= 0; i--) {
       stems[i].play()
     }
-    self.playicon = "av:pause";
+    self.playicon = "img/pause.png";
   }
 
   function stopSound() {
@@ -113,7 +113,7 @@ console.log(self.str)
     for (var i = stems.length - 1; i >= 0; i--) {
       stems[i].load()
     }
-    self.playicon = "av:play_arrow"
+    self.playicon = "img/play.png"
   }
 
   self.recSound = function() {
@@ -150,7 +150,7 @@ console.log(self.str)
       var result = self.selectedSong.channels.filter(function(channel) {
                   return channel.type == "soprano";});
       result[0].clips.push({singer: self.user, file: res.data.filename});
-      
+
       Song.update({ id:self.selectedSong._id }, {song: self.selectedSong}, function(){
         
       });

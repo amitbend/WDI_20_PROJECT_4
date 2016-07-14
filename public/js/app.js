@@ -17,7 +17,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: "/",
-      templateUrl: "js/views/songs/play.html"
+      templateUrl: "js/views/home.html"
     })
     .state('login', {
       url: "/login",

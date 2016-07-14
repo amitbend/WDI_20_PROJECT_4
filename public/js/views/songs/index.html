@@ -8,7 +8,7 @@
       <md-list>
         <md-list-item class="md-3-line" ng-repeat="song in songs.all | filter: searchBox" >
           <div class="md-list-item-text">
-            <a href="#" ng-click='songs.selectSong(song)'"><h3 class="md-display-3">{{song.title}}</h3></a>
+            <h3 ng-click='songs.selectSong(song)' class="md-display-3">{{song.title}}</h3>
            
 
           </div>

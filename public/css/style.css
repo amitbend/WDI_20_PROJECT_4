@@ -15,6 +15,11 @@ body {
   width: 40px;
 }
 
+.home-links {
+  display: inline;
+  margin: 0px 20px;
+}
+
 main {
   background-image: url("../img/ye.jpg");
     /* background-attachment: fixed;*/
@@ -49,7 +54,7 @@ main {
   background-color: white;
   width: 50%;
   padding: 10px;
-  margin: 25px auto;
+  margin: 30px auto;
   border-radius: 30px;
 }
 
@@ -192,7 +197,7 @@ md-icon {
 }
 
 #sheet {
-  margin: 0 auto;
+  margin: 30px auto;
   height: 80vh;
   width: 95%;
   border-radius: 40px;
@@ -219,9 +224,6 @@ md-icon {
   display: inline; 
 }
 
-header {
-
-}
 
 header img {
 
@@ -231,7 +233,7 @@ header img {
 
 nav {
   margin-top: 10px;
-  margin: 0 auto;
+  margin: 10px auto;
   text-align: center;
 }
 
@@ -273,7 +275,7 @@ md-card {
   display: inline;
 }
 
-#register {
+.user-form {
   padding: 15px;
 }
 
@@ -288,6 +290,7 @@ md-card {
 
 .md-menu {
   line-height: 94px;
+  margin: 0px;
 }
 
 .menudemoMenuPositionModes .md-menu-demo {

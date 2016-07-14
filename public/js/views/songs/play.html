@@ -3,10 +3,10 @@
   <div class="control-panel" md-theme="default" md-theme-watch>
 
    <span>
-   <a href="#" data-ng-click="play.recSound()"><img class="icon" src="img/rec.png"></a>
-     <a href="#" data-ng-click="play.playSound()"><img class="icon" src="img/play.png"></a>
-     <a href="#" data-ng-click="play.stopSound()"><img class="icon" src="img/stop.png"></a>  
-     <md-button data-ng-click="play.saveSound()">Save</md-button>
+     <a data-ng-click="play.recSound()"><img class="icon" src="img/rec.png"></a>
+     <a data-ng-click="play.playSound()"><img class="icon" src="{{play.playicon}}"></a>
+     <a data-ng-click="play.stopSound()"><img class="icon" src="img/stop.png"></a>  
+     <a data-ng-click="play.saveSound()"><img class="icon" src="img/save.png"></a>
    </span>
 
    <ng-audio-recorder id="mainAudio" audio-model="recorded" onsort="saveFile()" show-player="false">
@@ -51,14 +51,14 @@
  </div>
 
 
-</div>
+ </div>
 
 
-<img id='sheet' src={{play.sheetsource}}>
+ <img id='sheet' src={{play.sheetsource}}>
 
-<audio myaudio id="clip1" class="stem soprano" src="music/soualle_soprano.mp3" preload="none" autobuffer></audio> 
-<audio  id="clip2" class="stem soprano" src="music/soualle_alto.mp3"  preload="none" autobuffer></audio> 
-<audio id="clip3" class="stem baritone" src="music/soualle_baritone.mp3"  preload="none" autobuffer></audio> 
+ <audio myaudio id="clip1" class="stem soprano" src="music/soualle_soprano.mp3" preload="none" autobuffer></audio> 
+ <audio  id="clip2" class="stem soprano" src="music/soualle_alto.mp3"  preload="none" autobuffer></audio> 
+ <audio id="clip3" class="stem baritone" src="music/soualle_baritone.mp3"  preload="none" autobuffer></audio> 
 
 
 </section>

@@ -1,6 +1,6 @@
 angular
-  .module('choir')
-  .controller('songsController', songsController)
+.module('choir')
+.controller('songsController', songsController)
 
 songsController.$inject = ['$scope', 'Song', '$state', '$location', 'CurrentUser', 'appService', 'Upload'];
 
@@ -15,25 +15,25 @@ function songsController($scope, Song, $state, $location, CurrentUser, appServic
   self.selectSong   = selectSong;
   self.selectedSong = appService.selectedSong
   self.file = null;
-console.log(appService.selectedSong)
+  console.log(appService.selectedSong)
 
   
-getSongs();
+  getSongs();
 
-function getSongs(){
-  Song.query(function(data){
-    self.all = data;
-  });
-}
+  function getSongs(){
+    Song.query(function(data){
+      self.all = data;
+    });
+  }
 
-this.addSong = function(){
+  this.addSong = function(){
 
-  Song.save({song: $scope.newSong}, function(response){
-        self.all.push($scope.newSong);
+    Song.save({song: $scope.newSong}, function(response){
+      self.all.push($scope.newSong);
         // owner = CurrentUser.getuser();
         // owner.songs.push(self.newSong);
         $scope.newSong = {}
-    });  
+      });  
   }
 
   this.showSong = function(song) {
@@ -41,7 +41,7 @@ this.addSong = function(){
   }
 
   function editSong(song){
-      self.editedSong = song;  
+    self.editedSong = song;  
   }
 
   function updateSong(){
@@ -49,7 +49,7 @@ this.addSong = function(){
     $http.put('http://localhost:3000/songs/' + self.editedSong._id, {project: this.editedSong}).then(function(response){
       self.all[index] = self.editedSong;
     })
-    }
+  }
 
   self.deleteSong = function(song){
     console.log("deleting")
@@ -61,37 +61,37 @@ this.addSong = function(){
       index2 = user.songs.indexOf(song)
       user.songs.splice(index2, 1); 
     })
-    }
+  }
 
 
-   self.addChannel = function(type) {
+  self.addChannel = function(type) {
     console.log('adding channel');
     switch(type) {
-        case "soprano":
-            document.getElementById("choiceSoprano").style.opacity = 1;
-            $scope.newSong.channels.push({type: "soprano", avatar:"img/soprano.png"})
-            break;
-        case "alto":
-            document.getElementById("choiceAlto").style.opacity = 1;
-            $scope.newSong.channels.push({type: "alto", avatar:"img/alto.png"})
-            break;
-        case "baritone":
-            document.getElementById("choiceBaritone").style.opacity = 1;
-            $scope.newSong.channels.push({type: "baritone", avatar:"img/baritone.png"})
-            break;
+      case "soprano":
+      document.getElementById("choiceSoprano").style.opacity = 1;
+      $scope.newSong.channels.push({type: "soprano", avatar:"img/soprano.png"})
+      break;
+      case "alto":
+      document.getElementById("choiceAlto").style.opacity = 1;
+      $scope.newSong.channels.push({type: "alto", avatar:"img/alto.png"})
+      break;
+      case "baritone":
+      document.getElementById("choiceBaritone").style.opacity = 1;
+      $scope.newSong.channels.push({type: "baritone", avatar:"img/baritone.png"})
+      break;
     }
-   }
+  }
 
   function selectSong(song){
 
 
-      localStorage.setItem("song_id", song._id);
-      appService.selectedSong = song;
+    localStorage.setItem("song_id", song._id);
+    appService.selectedSong = song;
+    $state.go('play');
+  }
 
-    }
 
-
- self.uploadSingle = function() {
+  self.uploadSingle = function() {
 
    Upload.upload({
      url: 'http://localhost:3000/upload/single',
